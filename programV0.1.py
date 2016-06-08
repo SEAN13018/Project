@@ -15,4 +15,6 @@ GUI.configure(background='light blue')
 menu = Menu(GUI)
 GUI.config(menu=menu)
 subMenu = Menu(menu)
+#Tkinter not finished
+
 
