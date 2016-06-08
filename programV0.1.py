@@ -17,4 +17,27 @@ GUI.config(menu=menu)
 subMenu = Menu(menu)
 #Tkinter not finished
 
+def main(): 
+    print("Menu Options: 'Food', 'Drinks', 'Own Items'")
+    question= input("What would you like to order? ")
+    question = question.lower()
+    if question == "food":
+        food()
+        drinks()
+        misc()
+    else:
+        print("Please enter a correct option")
+        print("Sending you back to the beginning")
+        print("--------------------------------------------------------------")
+        main()
 
+def food():
+    print("Food Function")
+    
+def drinks():
+    print("Drinks Function")
+
+def misc():
+    print("Misc Function")
+    
+main()
