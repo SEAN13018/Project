@@ -1,5 +1,5 @@
-# Menu V0.1 
-# 02/06/16
+# Menu V0.2
+# 10/06/16
 # Sean Nichols
 
 from tkinter import *
@@ -18,9 +18,18 @@ subMenu = Menu(menu)
 #Tkinter not finished
 
 #Tkinter not incorporated at this stage 9/6/16
+
+#Global Lists
+itemList = ["Fries", "Chicken Burger with Fries", "Pork Burger with Fries", "Vegetable Burger", "Seafood Chowder", "Fish and Chips"]
+priceList = [4.99, 14.99, 17.99, 13.99, 8.99, 18.99]
+itemList_2 = ["Coca-Cola", "Sprite", "Moet Champagne", "Santana DVX", "Martini", "Pina Colada"]
+priceList_2 = [3.99, 3.99, 34.99, 69.00, 8.99, 8.99]
+newItems = []
+newPrices = []
+    
 def main(): 
     print("Menu Options: 'Food', 'Drinks', 'Own Items'")
-    question= input("What would you like to order? ")
+    question= input("What would you like to order? :")
     question = question.lower()
     if question == "food":
         food()
@@ -35,7 +44,11 @@ def main():
         main()
 
 def food():
-    print("Food Function")
+    print("The current food items available:")
+    global itemList
+    global priceList
+   # print("{0}".format(itemList, priceList))
+    # not working
     
 def drinks():
     print("Drinks Function")
