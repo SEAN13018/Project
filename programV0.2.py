@@ -44,11 +44,24 @@ def main():
         main()
 
 def food():
+    chosen = []
     print("The current food items available:")
     global itemList
     global priceList
-   # print("{0}".format(itemList, priceList))
-    # not working
+    print("Items available")
+    print("{0} ${1},".format(itemList[0], priceList[0]))
+    print("{0} ${1},".format(itemList[1], priceList[1]))
+    print("{0} ${1},".format(itemList[2], priceList[2]))
+    print("{0} ${1},".format(itemList[3], priceList[3]))
+    print("{0} ${1},".format(itemList[4], priceList[4]))
+    print("{0} ${1}".format(itemList[5], priceList[5]))
+    print("Please select one item at a time")
+    question_1 = input("What item would you like?")
+    question_1 = question_1.lower()
+    if question_1 == "fries" or question_1 == "chips":
+        chosen.append = itemList[0]
+        print(chosen)
+         # not working
     
 def drinks():
     print("Drinks Function")
