@@ -1,5 +1,5 @@
 # Menu V0.2
-# 10/06/16
+# 16/06/16
 # Sean Nichols
 
 from tkinter import *
@@ -44,7 +44,8 @@ def main():
         main()
 
 def food():
-    chosen = []
+    chosen = "test" # fix this too 13:32 16-06-16
+    print(chosen) #remember to remove print function
     print("The current food items available:")
     global itemList
     global priceList
