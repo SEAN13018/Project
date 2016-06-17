@@ -1,5 +1,5 @@
 # Menu V0.2
-# 16/06/16
+# 17/06/16
 # Sean Nichols
 
 from tkinter import *
@@ -15,21 +15,22 @@ GUI.configure(background='light blue')
 menu = Menu(GUI)
 GUI.config(menu=menu)
 subMenu = Menu(menu)
-#Tkinter not finished
+# Tkinter not finished
 
-#Tkinter not incorporated at this stage 9/6/16
+# Tkinter not incorporated at this stage 9/6/16
 
-#Global Lists
+# Global Lists
 itemList = ["Fries", "Chicken Burger with Fries", "Pork Burger with Fries", "Vegetable Burger", "Seafood Chowder", "Fish and Chips"]
 priceList = [5, 15, 18, 14, 9, 19]
 itemList_2 = ["Coca-Cola", "Sprite", "Moet Champagne", "Santana DVX", "Martini", "Pina Colada"]
 priceList_2 = [4, 4, 35, 69, 9, 9]
 newItems = []
 newPrices = []
-    
-def main(): 
+
+
+def main():
     print("Menu Options: 'Food', 'Drinks', 'Own Items'")
-    question= input("What would you like to order? :")
+    question = input("What would you like to order? :")
     question = question.lower()
     if question == "food":
         food()
@@ -44,9 +45,11 @@ def main():
         main()
 
 def food():
+    # make global? 
     totalPrice = 0
-    quantity= []
+    quantity = []
     chosen = []
+    
     question = "y"
     while question == "y" or question == "yes": 
         print("__________________________________________")
@@ -69,50 +72,52 @@ def food():
             chosen.append(itemList[0])
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(chosen)))
             quantity.append(question_2)
-            total= quantity[0] * priceList[0]
+            total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
-            print("Current total = ${0}".format(totalPrice))
+            print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "chicken burger" or question_1 == "chicken":
             chosen.append(itemList[0])
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(chosen)))
             quantity.append(question_2)
-            total= quantity[0] * priceList[0]
+            total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
-            print("Current total = ${0}".format(totalPrice))  
-            #copied and changed names. 
+            print("Current order total = ${0}".format(totalPrice))  
+            # copied and changed names. 
         elif question_1 == "pork burger" or question_1 == "pork":
             chosen.append(itemList[0])
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(chosen)))
             quantity.append(question_2)
-            total= quantity[0] * priceList[0]
+            total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
-            print("Current total = ${0}".format(totalPrice))   
+            print("Current order total = ${0}".format(totalPrice))   
             
         elif question_1 == "vegetable burger" or question_1 == "vegetable" or question_1 == "vegetables":
             chosen.append(itemList[0])
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(chosen)))
             quantity.append(question_2)
-            total= quantity[0] * priceList[0]
+            total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
-            print("Current total = ${0}".format(totalPrice))   
+            print("Current order total = ${0}".format(totalPrice))   
             
         elif question_1 == "seafood chowder" or question_1 == "seafood" or question_1 == "chowder":
             chosen.append(itemList[0])
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(chosen)))
             quantity.append(question_2)
-            total= quantity[0] * priceList[0]
+            total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
-            print("Current total = ${0}".format(totalPrice))  
+            print("Current order total = ${0}".format(totalPrice))  
             
         elif question_1 == "fish and chips" or question_1 == "fish":
             chosen.append(itemList[0])
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(chosen)))
             quantity.append(question_2)
-            total= quantity[0] * priceList[0]
+            total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
-            print("Current total = ${0}".format(totalPrice))      
-            
+            print("Current order total = ${0}".format(totalPrice))
+        else:
+            print("Please enter a valid item."
+
         question = input("Do you want to order more food? yes / no: ")
         question = question.lower()
         if question == "n" or question == "no":
@@ -121,7 +126,7 @@ def food():
             print(chosen)
             end(totalPrice, quantity, chosen) 
         
-def drinks():
+def drinks(): # not finished
     global itemList_2
     global priceList_2
     chosen = []
