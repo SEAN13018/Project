@@ -132,9 +132,11 @@ def food(totalPrice, quantity, chosen):
         question = question.lower()
         if question == "n" or question == "no":
             print("The total price of your chosen items is ${0}".format(totalPrice))
-            print("The total items of food you will receive is {0}".format(quantity))
-            print("The items you have chosen are: {0}".format(chosen))
-            end(totalPrice, quantity, chosen) 
+            sum_quantity = sum(quantity)
+            print("The number of items you will receive is: {0}".format(sum_quantity))
+            chosen_B = chosen[::-1]
+            print("The items you have chosen are: {0}".format(chosen_B))
+            end(totalPrice, quantity, chosen)   
             
 # drinks - not the correct lists or items
 
@@ -217,7 +219,7 @@ def drinks(totalPrice, quantity, chosen):
             sum_quantity = sum(quantity)
             print("The quantity of drinks you will receive is: {0}".format(sum_quantity))
             chosen_B = chosen[::-1]
-            print("The items you have chosen are: {0}".format(chosen_B))
+            print("The drinks you have chosen are: {0}".format(chosen_B))
             end(totalPrice, quantity, chosen)     
         
 def misc():
