@@ -216,7 +216,8 @@ def drinks(totalPrice, quantity, chosen):
             print("The total price of your chosen items is ${0}".format(totalPrice))
             sum_quantity = sum(quantity)
             print("The quantity of drinks you will receive is: {0}".format(sum_quantity))
-            print("The items you have chosen are: {0}".format(chosen))
+            chosen_B = chosen[::-1]
+            print("The items you have chosen are: {0}".format(chosen_B))
             end(totalPrice, quantity, chosen)     
         
 def misc():
