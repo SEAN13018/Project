@@ -1,5 +1,5 @@
 # Menu V0.3
-# 28/06/16
+# 30/06/16
 # Sean Nichols
 
 from tkinter import *
@@ -16,6 +16,7 @@ menu = Menu(GUI)
 GUI.config(menu=menu)
 subMenu = Menu(menu)
 # Tkinter not finished
+# Use lynda.com
 
 # Tkinter not incorporated at this stage 9/6/16
 
@@ -26,8 +27,6 @@ itemList_2 = ["Coca-Cola", "Sprite", "Moet Champagne", "Santana DVX", "Martini",
 priceList_2 = [4, 4, 35, 69, 9, 9]
 newItems = []
 newPrices = []
-
-import functools
 
 def main():
     print("Menu Options: 'Food', 'Drinks', 'Own Items'")
@@ -84,6 +83,7 @@ def food(totalPrice, quantity, chosen, task):
         if question_1 == "fries" or question_1 == "chips":
             chosen = [question_1] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[0])))
+            # Needs limit on quantity for all. Note on tkinter and as a note on the program
             quantity.append(question_2)
             total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
@@ -135,14 +135,21 @@ def food(totalPrice, quantity, chosen, task):
             print("Please enter a valid item.")
             food(totalPrice, quantity, chosen, task)
             # Only allows items that are on the list. 
-            
-        # Lets the user order more items. 
-        question = input("Do you want to order more food? yes / no: ")
-        question = question.lower()
-        if question == "n" or question == "no":
-            end(totalPrice, quantity, chosen, task)  
-            #If the user does not want to continue entering items
-            # it sends them to the final (end) function            
+        false = 1
+        while false == 1:
+            question = input("Do you want to order more food? yes / no: ")
+            question = question.lower()
+            if question == "y" or question == "yes":
+                drinks(totalPrice, quantity, chosen, task)
+                false = 0
+            elif question == "n" or question == "no":
+                end(totalPrice, quantity, chosen, task)
+                false = 0
+            else:
+                print("Please choose a valid option...  y/n ")
+                false = 1
+                #If the user does not want to continue entering items
+                # it sends them to the final (end) function    
 
 
 def drinks(totalPrice, quantity, chosen, task):
@@ -218,20 +225,27 @@ def drinks(totalPrice, quantity, chosen, task):
             food(totalPrice, quantity, chosen, task);
             # Returns to the start of the food function with the user's 
             # previous choices   
-        while question == "y" or question =="yes": 
+        false = 1
+        while false == 1:
             question = input("Do you want to order more food? yes / no: ")
             question = question.lower()
-            if question == "n" or question == "no":
+            if question == "y" or question == "yes":
+                drinks(totalPrice, quantity, chosen, task)
+                false = 0
+            elif question == "n" or question == "no":
                 end(totalPrice, quantity, chosen, task)
-            else: 
-                question == "y"
-                # FIX 28/06/16
-            #If the user does not want to continue entering items
-            # it sends them to the final (end) function
+                false = 0
+            else:
+                print("Please choose a valid option...  y/n ")
+                false = 1
+                #If the user does not want to continue entering items
+                # it sends them to the final (end) function
         
 def misc(totalPrice, quantity, chosen, task):
-    print("Misc Function")
-    end(totalPrice, quantity, chosen, task)
+    global newItems
+    global newPrices
+    # Allow user to add items with prices
+    # Allow user to choose the items
     
 def end(totalPrice, quantity, chosen, task):
     if task == 1:
