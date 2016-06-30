@@ -1,5 +1,5 @@
 # Menu V0.3
-# 30/06/16
+# 01/07/16
 # Sean Nichols
 
 from tkinter import *
@@ -19,6 +19,8 @@ subMenu = Menu(menu)
 # Use lynda.com
 
 # Tkinter not incorporated at this stage 9/6/16
+
+from random import randint
 
 # Global Lists
 itemList = ["Fries", "Chicken Burger with Fries", "Pork Burger with Fries", "Vegetable Burger", "Seafood Chowder", "Fish and Chips"]
@@ -81,7 +83,7 @@ def food(totalPrice, quantity, chosen, task):
         question_1 = question_1.lower()
         # Adds the item and quantities to lists. 
         if question_1 == "fries" or question_1 == "chips":
-            chosen = [question_1] + chosen
+            chosen = [itemList[0]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[0])))
             # Needs limit on quantity for all. Note on tkinter and as a note on the program
             quantity.append(question_2)
@@ -90,7 +92,7 @@ def food(totalPrice, quantity, chosen, task):
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "chicken burger" or question_1 == "chicken" or question_1 == "chicken burger with fries":
-            chosen = [question_1] + chosen
+            chosen = [itemList[1]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[1])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[1]
@@ -98,8 +100,7 @@ def food(totalPrice, quantity, chosen, task):
             print("Current order total = ${0}".format(totalPrice))  
 
         elif question_1 == "pork burger" or question_1 == "pork" or question_1 == "pork burger with fries":
-            chosen = [question_1] + chosen
-            chosen.append(itemList[2])
+            chosen = [itemList[2]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[2])))
             quantity = [question_2] + quantity
             print(quantity)
@@ -108,7 +109,7 @@ def food(totalPrice, quantity, chosen, task):
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "vegetable burger" or question_1 == "vegetable" or question_1 == "vegetables":
-            chosen = [question_1] + chosen
+            chosen = [itemList[3]] + chosen
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(itemList[3])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[3]
@@ -116,7 +117,7 @@ def food(totalPrice, quantity, chosen, task):
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "seafood chowder" or question_1 == "seafood" or question_1 == "chowder":
-            chosen = [question_1] + chosen
+            chosen = [itemList[4]] + chosen
             question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList[4])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[4]
@@ -124,7 +125,7 @@ def food(totalPrice, quantity, chosen, task):
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "fish and chips" or question_1 == "fish":
-            chosen = [question_1] + chosen
+            chosen = [itemList[5]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[5])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[5]
@@ -135,22 +136,19 @@ def food(totalPrice, quantity, chosen, task):
             print("Please enter a valid item.")
             food(totalPrice, quantity, chosen, task)
             # Only allows items that are on the list. 
-        false = 1
-        while false == 1:
+        question = "y"   # 11:42    Fix THis
+        while question != "y":
+            # Make it so it returns them back to the while when entering the wrong thing. 
             question = input("Do you want to order more food? yes / no: ")
             question = question.lower()
             if question == "y" or question == "yes":
                 drinks(totalPrice, quantity, chosen, task)
-                false = 0
             elif question == "n" or question == "no":
                 end(totalPrice, quantity, chosen, task)
-                false = 0
             else:
                 print("Please choose a valid option...  y/n ")
-                false = 1
                 #If the user does not want to continue entering items
                 # it sends them to the final (end) function    
-
 
 def drinks(totalPrice, quantity, chosen, task):
     question = "y"
@@ -262,13 +260,29 @@ def end(totalPrice, quantity, chosen, task):
         sum_quantity = sum(quantity)
         print("The quantity of drinks you will receive is: {0}".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The drinks you have chosen are: {0}".format(chosen_B))        
-        
+        print("The drinks you have chosen are: {0}".format(chosen_B))
+        random = randint(1234,9999)
+        random = 2000
+        if random == 2000:
+            alt()
+        else:
+            print("Welcome to the end of the beginning")
+            
+
     elif task == 3: 
         # Prints the miscellaneous item data
         print("The total price of your chosen items is ${0}".format(totalPrice))
         sum_quantity = sum(quantity)
         print("The quantity of items you will receive is: {0}".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The items you have chosen are: {0}".format(chosen_B))                
+        print("The items you have chosen are: {0}".format(chosen_B))
+
+def alt():
+    print("Congratulations this order is free!!")
+    totalPrice = 0
+    print("The new total price is ${0}".format(totalPrice))
+    print(".")
+    print(".")
+    print(".")
+    print("Thanks for ordering with Sean")
 main()
