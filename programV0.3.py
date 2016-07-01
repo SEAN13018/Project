@@ -32,7 +32,7 @@ newPrices = []
 
 def main():
     print("Menu Options: 'Food', 'Drinks', 'Own Items'")
-    question = input("What would you like to order? :")
+    question = input("What would you like to order? : ")
     question = question.lower()
     if question == "food":
         task = 1
@@ -136,19 +136,22 @@ def food(totalPrice, quantity, chosen, task):
             print("Please enter a valid item.")
             food(totalPrice, quantity, chosen, task)
             # Only allows items that are on the list. 
-        question = "y"   # 11:42    Fix THis
-        while question != "y":
-            # Make it so it returns them back to the while when entering the wrong thing. 
+
+        question = "x"
+        while question == "x":
+            # Make it so it returns them back to the while when entering the wrong thing.
             question = input("Do you want to order more food? yes / no: ")
             question = question.lower()
+            # Ignores the no after the second item is entered 1:27 1/7/16
             if question == "y" or question == "yes":
-                drinks(totalPrice, quantity, chosen, task)
+                food(totalPrice, quantity, chosen, task)
             elif question == "n" or question == "no":
                 end(totalPrice, quantity, chosen, task)
+                #If the user does not want to continue entering items
+                # it sends them to the final (end) function
             else:
                 print("Please choose a valid option...  y/n ")
-                #If the user does not want to continue entering items
-                # it sends them to the final (end) function    
+                question = "x"
 
 def drinks(totalPrice, quantity, chosen, task):
     question = "y"
