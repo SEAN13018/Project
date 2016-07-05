@@ -1,5 +1,5 @@
 # Menu V0.3
-# 01/07/16
+# 05/07/16
 # Sean Nichols
 
 from tkinter import *
@@ -144,11 +144,14 @@ def food(totalPrice, quantity, chosen, task):
             question = question.lower()
             # Ignores the no after the second item is entered 1:27 1/7/16
             if question == "y" or question == "yes":
+                question = "z"
                 food(totalPrice, quantity, chosen, task)
             elif question == "n" or question == "no":
+                question = "z"
                 end(totalPrice, quantity, chosen, task)
-                #If the user does not want to continue entering items
-                # it sends them to the final (end) function
+                # It sends them to the final (end) function
+# Enters second item, then chooses no - deletes item from list?
+# If the user does not want to continue entering items - Fixed
             else:
                 print("Please choose a valid option...  y/n ")
                 question = "x"
@@ -223,24 +226,27 @@ def drinks(totalPrice, quantity, chosen, task):
                 
         else:
             print("Please enter a valid item.")
-            food(totalPrice, quantity, chosen, task);
-            # Returns to the start of the food function with the user's 
-            # previous choices   
-        false = 1
-        while false == 1:
+            food(totalPrice, quantity, chosen, task)
+            # Only allows items that are on the list. 
+
+        question = "x"
+        while question == "x":
+            # Make it so it returns them back to the while when entering the wrong thing.
             question = input("Do you want to order more food? yes / no: ")
             question = question.lower()
             if question == "y" or question == "yes":
+                question = "z"
                 drinks(totalPrice, quantity, chosen, task)
-                false = 0
             elif question == "n" or question == "no":
+                question = "z"
                 end(totalPrice, quantity, chosen, task)
-                false = 0
+                # It sends them to the final (end) function
+# Enters second item, then chooses no - deletes item from list?
+# If the user does not want to continue entering items - Fixed
             else:
                 print("Please choose a valid option...  y/n ")
-                false = 1
-                #If the user does not want to continue entering items
-                # it sends them to the final (end) function
+                question = "x"
+
         
 def misc(totalPrice, quantity, chosen, task):
     global newItems
@@ -256,7 +262,12 @@ def end(totalPrice, quantity, chosen, task):
         print("The number of items you will receive is: {0}".format(sum_quantity))
         chosen_B = chosen[::-1]
         print("The items you have chosen are: {0}".format(chosen_B))
-         
+        random = randint(1234,9999)
+        if random == 2000:
+            alt()
+        else:
+            print("Welcome to the end of the beginning")
+
     elif task == 2:
         # Prints the drink data
         print("The total price of your chosen items is ${0}".format(totalPrice))
@@ -265,13 +276,11 @@ def end(totalPrice, quantity, chosen, task):
         chosen_B = chosen[::-1]
         print("The drinks you have chosen are: {0}".format(chosen_B))
         random = randint(1234,9999)
-        random = 2000
         if random == 2000:
             alt()
         else:
             print("Welcome to the end of the beginning")
             
-
     elif task == 3: 
         # Prints the miscellaneous item data
         print("The total price of your chosen items is ${0}".format(totalPrice))
@@ -281,11 +290,15 @@ def end(totalPrice, quantity, chosen, task):
         print("The items you have chosen are: {0}".format(chosen_B))
 
 def alt():
+    # Free order 
     print("Congratulations this order is free!!")
-    totalPrice = 0
-    print("The new total price is ${0}".format(totalPrice))
+    print("The new total price is $0")
     print(".")
     print(".")
     print(".")
     print("Thanks for ordering with Sean")
 main()
+
+# Need to show quantities as seperate and be able to link to correct item 5/7/16
+# http://stackoverflow.com/questions/6119790/naming-lists-using-user-input
+# Link possibly might help. 
