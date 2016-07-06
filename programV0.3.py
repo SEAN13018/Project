@@ -1,5 +1,5 @@
-# Menu V0.2
-# 27/06/16
+# Menu V0.3
+# 05/07/16
 # Sean Nichols
 
 from tkinter import *
@@ -16,8 +16,11 @@ menu = Menu(GUI)
 GUI.config(menu=menu)
 subMenu = Menu(menu)
 # Tkinter not finished
+# Use lynda.com
 
 # Tkinter not incorporated at this stage 9/6/16
+
+from random import randint
 
 # Global Lists
 itemList = ["Fries", "Chicken Burger with Fries", "Pork Burger with Fries", "Vegetable Burger", "Seafood Chowder", "Fish and Chips"]
@@ -27,11 +30,9 @@ priceList_2 = [4, 4, 35, 69, 9, 9]
 newItems = []
 newPrices = []
 
-import functools
-
 def main():
     print("Menu Options: 'Food', 'Drinks', 'Own Items'")
-    question = input("What would you like to order? :")
+    question = input("What would you like to order? : ")
     question = question.lower()
     if question == "food":
         task = 1
@@ -44,18 +45,23 @@ def main():
     else:
         print("Please enter a valid option")
         print("Sending you back to the beginning")
-        print("--------------------------------------------------------------")
+        print("__________________________________________")
         main()
+        # Sends the user to the correct function
+        
 def setup(task):
     totalPrice = 0
     quantity = []
     chosen = []  
     if task == 1:
-        food(totalPrice, quantity, chosen);
+        food(totalPrice, quantity, chosen, task);
     elif task == 2:
-        drinks(totalPrice, quantity, chosen);
-        
-def food(totalPrice, quantity, chosen):
+        drinks(totalPrice, quantity, chosen, task);
+    elif task == 3:
+        misc(totalPrice, quantity, chosen, task);
+     # Sends correct parameters to functions   
+     
+def food(totalPrice, quantity, chosen, task):
     question = "y"
     while question == "y" or question == "yes": 
         print("__________________________________________")
@@ -72,18 +78,21 @@ def food(totalPrice, quantity, chosen):
         print("{0} ${1}".format(itemList[5], priceList[5]))
         print("__________________________________________")
         print("Please select one item at a time.")
+        # Prints the items available for ordering
         question_1 = input("What item would you like? ")
         question_1 = question_1.lower()
+        # Adds the item and quantities to lists. 
         if question_1 == "fries" or question_1 == "chips":
-            chosen = [question_1] + chosen
+            chosen = [itemList[0]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[0])))
+            # Needs limit on quantity for all. Note on tkinter and as a note on the program
             quantity.append(question_2)
             total = quantity[0] * priceList[0]
             totalPrice = totalPrice + total 
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "chicken burger" or question_1 == "chicken" or question_1 == "chicken burger with fries":
-            chosen = [question_1] + chosen
+            chosen = [itemList[1]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[1])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[1]
@@ -91,8 +100,7 @@ def food(totalPrice, quantity, chosen):
             print("Current order total = ${0}".format(totalPrice))  
 
         elif question_1 == "pork burger" or question_1 == "pork" or question_1 == "pork burger with fries":
-            chosen = [question_1] + chosen
-            chosen.append(itemList[2])
+            chosen = [itemList[2]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[2])))
             quantity = [question_2] + quantity
             print(quantity)
@@ -101,7 +109,7 @@ def food(totalPrice, quantity, chosen):
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "vegetable burger" or question_1 == "vegetable" or question_1 == "vegetables":
-            chosen = [question_1] + chosen
+            chosen = [itemList[3]] + chosen
             question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(itemList[3])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[3]
@@ -109,7 +117,7 @@ def food(totalPrice, quantity, chosen):
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "seafood chowder" or question_1 == "seafood" or question_1 == "chowder":
-            chosen = [question_1] + chosen
+            chosen = [itemList[4]] + chosen
             question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList[4])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[4]
@@ -117,7 +125,7 @@ def food(totalPrice, quantity, chosen):
             print("Current order total = ${0}".format(totalPrice))
             
         elif question_1 == "fish and chips" or question_1 == "fish":
-            chosen = [question_1] + chosen
+            chosen = [itemList[5]] + chosen
             question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[5])))
             quantity = [question_2] + quantity
             total = quantity[0] * priceList[5]
@@ -126,21 +134,29 @@ def food(totalPrice, quantity, chosen):
             
         else:
             print("Please enter a valid item.")
-            food(totalPrice, quantity, chosen);
-            
-        question = input("Do you want to order more food? yes / no: ")
-        question = question.lower()
-        if question == "n" or question == "no":
-            print("The total price of your chosen items is ${0}".format(totalPrice))
-            sum_quantity = sum(quantity)
-            print("The number of items you will receive is: {0}".format(sum_quantity))
-            chosen_B = chosen[::-1]
-            print("The items you have chosen are: {0}".format(chosen_B))
-            end(totalPrice, quantity, chosen)   
-            
-# drinks - not the correct lists or items
+            food(totalPrice, quantity, chosen, task)
+            # Only allows items that are on the list. 
 
-def drinks(totalPrice, quantity, chosen):
+        question = "x"
+        while question == "x":
+            # Make it so it returns them back to the while when entering the wrong thing.
+            question = input("Do you want to order more food? yes / no: ")
+            question = question.lower()
+            # Ignores the no after the second item is entered 1:27 1/7/16
+            if question == "y" or question == "yes":
+                question = "z"
+                food(totalPrice, quantity, chosen, task)
+            elif question == "n" or question == "no":
+                question = "z"
+                end(totalPrice, quantity, chosen, task)
+                # It sends them to the final (end) function
+# Enters second item, then chooses no - deletes item from list?
+# If the user does not want to continue entering items - Fixed
+            else:
+                print("Please choose a valid option...  y/n ")
+                question = "x"
+
+def drinks(totalPrice, quantity, chosen, task):
     question = "y"
     while question == "y" or question == "yes": 
         print("__________________________________________")
@@ -210,22 +226,79 @@ def drinks(totalPrice, quantity, chosen):
                 
         else:
             print("Please enter a valid item.")
-            food(totalPrice, quantity, chosen);
-                
-        question = input("Do you want to order more food? yes / no: ")
-        question = question.lower()
-        if question == "n" or question == "no":
-            print("The total price of your chosen items is ${0}".format(totalPrice))
-            sum_quantity = sum(quantity)
-            print("The quantity of drinks you will receive is: {0}".format(sum_quantity))
-            chosen_B = chosen[::-1]
-            print("The drinks you have chosen are: {0}".format(chosen_B))
-            end(totalPrice, quantity, chosen)     
+            food(totalPrice, quantity, chosen, task)
+            # Only allows items that are on the list. 
+
+        question = "x"
+        while question == "x":
+            # Make it so it returns them back to the while when entering the wrong thing.
+            question = input("Do you want to order more food? yes / no: ")
+            question = question.lower()
+            if question == "y" or question == "yes":
+                question = "z"
+                drinks(totalPrice, quantity, chosen, task)
+            elif question == "n" or question == "no":
+                question = "z"
+                end(totalPrice, quantity, chosen, task)
+                # It sends them to the final (end) function
+# Enters second item, then chooses no - deletes item from list?
+# If the user does not want to continue entering items - Fixed
+            else:
+                print("Please choose a valid option...  y/n ")
+                question = "x"
+
         
-def misc():
-    print("Misc Function")
+def misc(totalPrice, quantity, chosen, task):
+    global newItems
+    global newPrices
+    # Allow user to add items with prices
+    # Allow user to choose the items
     
-def end(totalPrice, quantity, chosen):
-    print("End function")
-    
+def end(totalPrice, quantity, chosen, task):
+    if task == 1:
+        # Prints the food data
+        print("The total price of your chosen items is ${0}".format(totalPrice))
+        sum_quantity = sum(quantity)
+        print("The number of items you will receive is: {0}".format(sum_quantity))
+        chosen_B = chosen[::-1]
+        print("The items you have chosen are: {0}".format(chosen_B))
+        random = randint(1234,9999)
+        if random == 2000:
+            alt()
+        else:
+            print("Welcome to the end of the beginning")
+
+    elif task == 2:
+        # Prints the drink data
+        print("The total price of your chosen items is ${0}".format(totalPrice))
+        sum_quantity = sum(quantity)
+        print("The quantity of drinks you will receive is: {0}".format(sum_quantity))
+        chosen_B = chosen[::-1]
+        print("The drinks you have chosen are: {0}".format(chosen_B))
+        random = randint(1234,9999)
+        if random == 2000:
+            alt()
+        else:
+            print("Welcome to the end of the beginning")
+            
+    elif task == 3: 
+        # Prints the miscellaneous item data
+        print("The total price of your chosen items is ${0}".format(totalPrice))
+        sum_quantity = sum(quantity)
+        print("The quantity of items you will receive is: {0}".format(sum_quantity))
+        chosen_B = chosen[::-1]
+        print("The items you have chosen are: {0}".format(chosen_B))
+
+def alt():
+    # Free order 
+    print("Congratulations this order is free!!")
+    print("The new total price is $0")
+    print(".")
+    print(".")
+    print(".")
+    print("Thanks for ordering with Sean")
 main()
+
+# Need to show quantities as seperate and be able to link to correct item 5/7/16
+# http://stackoverflow.com/questions/6119790/naming-lists-using-user-input
+# Link possibly might help. 
