@@ -1,5 +1,5 @@
 # Menu V0.4
-# 06/07/16
+# 07/07/16
 # Sean Nichols
 
 from tkinter import *
@@ -226,7 +226,7 @@ def drinks(totalPrice, quantity, chosen, task):
                 
         else:
             print("Please enter a valid item.")
-            food(totalPrice, quantity, chosen, task)
+            drinks(totalPrice, quantity, chosen, task)
             # Only allows items that are on the list. 
 
         question = "x"
@@ -263,6 +263,7 @@ def end(totalPrice, quantity, chosen, task):
         chosen_B = chosen[::-1]
         print("The items you have chosen are: {0}".format(chosen_B))
         random = randint(1234,9999)
+        print("Order number: #{0}".format(random))
         if random == 2000:
             alt()
         else:
@@ -276,6 +277,7 @@ def end(totalPrice, quantity, chosen, task):
         chosen_B = chosen[::-1]
         print("The drinks you have chosen are: {0}".format(chosen_B))
         random = randint(1234,9999)
+        print("Order number: #{0}".format(random))
         if random == 2000:
             alt()
         else:
@@ -288,9 +290,15 @@ def end(totalPrice, quantity, chosen, task):
         print("The quantity of items you will receive is: {0}".format(sum_quantity))
         chosen_B = chosen[::-1]
         print("The items you have chosen are: {0}".format(chosen_B))
+        random = randint(1234,9999)
+        print("Order number: #{0}".format(random))
+        if random == 2000:
+            alt()
+        else:
+            print("Welcome to the end of the beginning")
 
 def alt():
-    # Free order 
+    # Free order if random is equal too the number 2000
     print("Congratulations this order is free!!")
     print("The new total price is $0")
     print(".")
