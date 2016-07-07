@@ -1,5 +1,5 @@
 # Menu V0.4
-# 07/07/16
+# 08/07/16
 # Sean Nichols
 
 from tkinter import *
@@ -41,7 +41,8 @@ def main():
         task = 2
         setup(task)
     elif question == "own items" or question == "own" or question == "own item": 
-        misc()
+        task = 3
+        setup(task)
     else:
         print("Please enter a valid option")
         print("Sending you back to the beginning")
@@ -251,62 +252,77 @@ def drinks(totalPrice, quantity, chosen, task):
 def misc(totalPrice, quantity, chosen, task):
     global newItems
     global newPrices
+    question = "y"
+    while question == "yes" or question == "y":
+        item = input("What is the name of the new item? ")
+# Need to do something to allow it to be added to the start of the list. 
+        newItems = [item] + newItems
+        price = int(input("What is the price of the item? $"))
+        newPrices = [price] + newPrices
+        number = int(input("How many would you like? "))
+        quantity = [number] + quantity 
+        print("{0} {1}(s) have been added for ${2} has been added. ".format(quantity[0], newItems[0], newPrices[0]))
+        total = quantity[0] * newPrices[0]
+        totalPrice = totalPrice + total
+        question = input("Would you like to add anoher item? ")
+    chosen = newItems
+    end(totalPrice, quantity, chosen, task)
     # Allow user to add items with prices
     # Allow user to choose the items
     
 def end(totalPrice, quantity, chosen, task):
     if task == 1:
         # Prints the food data
-        print("The total price of your chosen items is ${0}".format(totalPrice))
+        print("The total price of your chosen items is ${0} ".format(totalPrice))
         sum_quantity = sum(quantity)
-        print("The number of items you will receive is: {0}".format(sum_quantity))
+        print("The number of items you will receive is: {0} ".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The items you have chosen are: {0}".format(chosen_B))
+        print("The items you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
-        print("Order number: #{0}".format(random))
+        print("Order number: #{0} ".format(random))
         if random == 2000:
             alt()
         else:
-            print("Welcome to the end of the beginning")
+            print("Welcome to the end of the beginning ")
 
     elif task == 2:
         # Prints the drink data
-        print("The total price of your chosen items is ${0}".format(totalPrice))
+        print("The total price of your chosen items is ${0} ".format(totalPrice))
         sum_quantity = sum(quantity)
-        print("The quantity of drinks you will receive is: {0}".format(sum_quantity))
+        print("The quantity of drinks you will receive is: {0} ".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The drinks you have chosen are: {0}".format(chosen_B))
+        print("The drinks you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
-        print("Order number: #{0}".format(random))
+        print("Order number: #{0} ".format(random))
         if random == 2000:
             alt()
         else:
-            print("Welcome to the end of the beginning")
+            print("Welcome to the end of the beginning ")
             
     elif task == 3: 
         # Prints the miscellaneous item data
-        print("The total price of your chosen items is ${0}".format(totalPrice))
+        print("The total price of your chosen items is ${0} ".format(totalPrice))
         sum_quantity = sum(quantity)
-        print("The quantity of items you will receive is: {0}".format(sum_quantity))
+        print("The quantity of items you will receive is: {0} ".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The items you have chosen are: {0}".format(chosen_B))
+        print("The items you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
-        print("Order number: #{0}".format(random))
+        print("Order number: #{0} ".format(random))
         if random == 2000:
             alt()
         else:
-            print("Welcome to the end of the beginning")
+            print("Welcome to the end of the beginning ")
 
 def alt():
-    # Free order if random is equal too the number 2000
-    print("Congratulations this order is free!!")
-    print("The new total price is $0")
+    # Free order if the order number is equal too the number 2000
+    print("Congratulations this order is free!! ")
+    print("The new total price is $0 ")
     print(".")
     print(".")
     print(".")
-    print("Thanks for ordering with Sean")
+    print("Thanks for ordering with Sean ")
 main()
 
-# Need to show quantities as seperate and be able to link to correct item 5/7/16
+# Need to show quantities separately and be able to link to correct item 5/7/16
 # http://stackoverflow.com/questions/6119790/naming-lists-using-user-input
 # Link possibly might help. 
