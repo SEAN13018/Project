@@ -1,5 +1,5 @@
 # Menu V0.4
-# 08/07/16
+# 23/07/16
 # Sean Nichols
 
 from tkinter import *
@@ -264,7 +264,7 @@ def misc(totalPrice, quantity, chosen, task):
         print("{0} {1}(s) have been added for ${2} has been added. ".format(quantity[0], newItems[0], newPrices[0]))
         total = quantity[0] * newPrices[0]
         totalPrice = totalPrice + total
-        question = input("Would you like to add anoher item? ")
+        question = input("Would you like to add another item? ")
     chosen = newItems
     end(totalPrice, quantity, chosen, task)
     # Allow user to add items with prices
@@ -273,11 +273,11 @@ def misc(totalPrice, quantity, chosen, task):
 def end(totalPrice, quantity, chosen, task):
     if task == 1:
         # Prints the food data
-        print("The total price of your chosen items is ${0} ".format(totalPrice))
+        print("The total price of your chosen item(s) is ${0} ".format(totalPrice))
         sum_quantity = sum(quantity)
-        print("The number of items you will receive is: {0} ".format(sum_quantity))
+        print("The number of item(s) you will receive is: {0} ".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The items you have chosen are: {0} ".format(chosen_B))
+        print("The item(s) you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
         print("Order number: #{0} ".format(random))
         if random == 2000:
@@ -287,11 +287,11 @@ def end(totalPrice, quantity, chosen, task):
 
     elif task == 2:
         # Prints the drink data
-        print("The total price of your chosen items is ${0} ".format(totalPrice))
+        print("The total price of your chosen item(s) is ${0} ".format(totalPrice))
         sum_quantity = sum(quantity)
-        print("The quantity of drinks you will receive is: {0} ".format(sum_quantity))
+        print("The quantity of drink(s) you will receive is: {0} ".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The drinks you have chosen are: {0} ".format(chosen_B))
+        print("The drink(s) you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
         print("Order number: #{0} ".format(random))
         if random == 2000:
@@ -301,11 +301,11 @@ def end(totalPrice, quantity, chosen, task):
             
     elif task == 3: 
         # Prints the miscellaneous item data
-        print("The total price of your chosen items is ${0} ".format(totalPrice))
+        print("The total price of your chosen item(s) is ${0} ".format(totalPrice))
         sum_quantity = sum(quantity)
-        print("The quantity of items you will receive is: {0} ".format(sum_quantity))
+        print("The quantity of item(s) you will receive is: {0} ".format(sum_quantity))
         chosen_B = chosen[::-1]
-        print("The items you have chosen are: {0} ".format(chosen_B))
+        print("The item(s) you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
         print("Order number: #{0} ".format(random))
         if random == 2000:
@@ -320,7 +320,7 @@ def alt():
     print(".")
     print(".")
     print(".")
-    print("Thanks for ordering with Sean ")
+    print("Thanks for ordering with 'Sean's Program' ")
 main()
 
 # Need to show quantities separately and be able to link to correct item 5/7/16
