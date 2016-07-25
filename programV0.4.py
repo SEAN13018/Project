@@ -1,5 +1,5 @@
 # Menu V0.4
-# 23/07/16
+# 25/07/16
 # Sean Nichols
 
 from tkinter import *
@@ -143,7 +143,7 @@ def food(totalPrice, quantity, chosen, task):
             # Make it so it returns them back to the while when entering the wrong thing.
             question = input("Do you want to order more food? yes / no: ")
             question = question.lower()
-            # Ignores the no after the second item is entered 1:27 1/7/16
+            # Ignored the no after the second item is entered - FIXED
             if question == "y" or question == "yes":
                 question = "z"
                 food(totalPrice, quantity, chosen, task)
@@ -151,8 +151,9 @@ def food(totalPrice, quantity, chosen, task):
                 question = "z"
                 end(totalPrice, quantity, chosen, task)
                 # It sends them to the final (end) function
-# Enters second item, then chooses no - deletes item from list?
-# If the user does not want to continue entering items - Fixed
+                
+# Enters second item, then chooses no - deletes item from list? - FIXED
+# If the user does not want to continue entering items - FIXED
             else:
                 print("Please choose a valid option...  y/n ")
                 question = "x"
