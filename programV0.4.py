@@ -1,30 +1,8 @@
 # Menu V0.4
 # 11/08/16
 # Sean Nichols
-
-from tkinter import *
-GUI = Tk()
-GUI.geometry("680x500")
-GUI.title("Menu Program")
-topFrame = Frame(GUI)
-topFrame.pack()
-bottomFrame = Frame(GUI)
-bottomFrame.pack(side=BOTTOM)
-GUI.configure(background='light blue')
-
-menu = Menu(GUI)
-GUI.config(menu=menu)
-subMenu = Menu(menu) 
-
-# When adding GUI create another version/file after main program functions are finished.  
-
-# Tkinter not finished
-# Use lynda.com
-
-# Tkinter not incorporated at this stage 9/6/16
-
 # Doesn't run properly in Wing IDE 101 5.0
-# Use IDLE 3.5.2
+# USE IDLE 3.5.2
 
 from random import randint
 
@@ -89,56 +67,79 @@ def food(totalPrice, quantity, chosen, task):
         # Prints the items available for ordering
         question_1 = input("What item would you like? ")
         question_1 = question_1.lower()
+        
         # Adds the item and quantities to lists. 
         if question_1 == "fries" or question_1 == "chips":
             chosen = [itemList[0]] + chosen
-            question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[0])))
-            # Needs limit on quantity for all. Note on tkinter and as a note on the program
-            quantity.append(question_2)
-            total = quantity[0] * priceList[0]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[0])))
+                # Quantity must be between 1 and 15
+                if 1 <= question_2 <= 15:
+                    quantity.append(question_2)
+                    total = quantity[0] * priceList[0]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
+                    # If quantity is not allowed, it will ask for a new quantity
+                    
+            # Possibly option for chossing zero as quantity asks to choose item again or choose correct quantity?
+            # returns to top of function?
             
         elif question_1 == "chicken burger" or question_1 == "chicken" or question_1 == "chicken burger with fries":
             chosen = [itemList[1]] + chosen
-            question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[1])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList[1]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))  
+            while question == "y":
+                question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[1])))
+                if 1<= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList[1]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
 
         elif question_1 == "pork burger" or question_1 == "pork" or question_1 == "pork burger with fries":
             chosen = [itemList[2]] + chosen
-            question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[2])))
-            quantity = [question_2] + quantity
-            print(quantity)
-            total = quantity[0] * priceList[2]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[2])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    print(quantity)
+                    total = quantity[0] * priceList[2]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
             
         elif question_1 == "vegetable burger" or question_1 == "vegetable" or question_1 == "vegetables":
             chosen = [itemList[3]] + chosen
-            question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(itemList[3])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList[3]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(itemList[3])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList[3]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
             
         elif question_1 == "seafood chowder" or question_1 == "seafood" or question_1 == "chowder":
             chosen = [itemList[4]] + chosen
-            question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList[4])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList[4]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList[4])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList[4]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
             
         elif question_1 == "fish and chips" or question_1 == "fish":
             chosen = [itemList[5]] + chosen
-            question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[5])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList[5]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList[5])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList[5]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
             
         else:
             print("Please enter a valid item.")
@@ -185,52 +186,71 @@ def drinks(totalPrice, quantity, chosen, task):
         question_1 = question_1.lower()
         if question_1 == "coca-cola" or question_1 == "coke":
             chosen = [itemList_2[0]] + chosen
-            question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[0])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList_2[0]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[0])))
+                # Quantity must be between 1 and 15
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList_2[0]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
+                    # If quantity is not allowed, it will ask for a new quantity
                
         elif question_1 == "sprite": 
             chosen = [itemList_2[1]] + chosen
-            question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[1])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList_2[1]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))  
+            while question == "y":
+                question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[1])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList_2[1]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
     
         elif question_1 == "champagne" or question_1 == "moet" or question_1 == "moet champagne":
             chosen = [itemList_2[2]] + chosen
-            question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[2])))
-            quantity = [question_2] + quantity
-            print(quantity)
-            total = quantity[0] * priceList_2[2]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[2])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList_2[2]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
                 
         elif question_1 == "santana dvx":
             chosen = [itemList_2[3]] + chosen
-            question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(itemList_2[3])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList_2[3]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How many {0}(s) do you want? Enter a value between 1 & 15: ".format(itemList_2[3])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList_2[3]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
                 
         elif question_1 == "martini":
             chosen = [itemList_2[4]] + chosen
-            question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[4])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList_2[4]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How much {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[4])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList_2[4]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
                 
         elif question_1 == "pina colada": 
             chosen = [itemList_2[5]] + chosen
-            question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[5])))
-            quantity = [question_2] + quantity
-            total = quantity[0] * priceList_2[5]
-            totalPrice = totalPrice + total 
-            print("Current order total = ${0}".format(totalPrice))
+            while question == "y":
+                question_2 = int(input("How many {0} do you want? Enter a value between 1 & 15: ".format(itemList_2[5])))
+                if 1 <= question_2 <= 15:
+                    quantity = [question_2] + quantity
+                    total = quantity[0] * priceList_2[5]
+                    totalPrice = totalPrice + total 
+                    print("Current order total = ${0}".format(totalPrice))
+                    question = "PASS"
                 
         else:
             print("Please enter a valid item.")
