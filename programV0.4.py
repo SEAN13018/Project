@@ -1,5 +1,5 @@
 # Menu V0.4
-# 25/07/16
+# 11/08/16
 # Sean Nichols
 
 from tkinter import *
@@ -14,11 +14,17 @@ GUI.configure(background='light blue')
 
 menu = Menu(GUI)
 GUI.config(menu=menu)
-subMenu = Menu(menu)
+subMenu = Menu(menu) 
+
+# When adding GUI create another version/file after main program functions are finished.  
+
 # Tkinter not finished
 # Use lynda.com
 
 # Tkinter not incorporated at this stage 9/6/16
+
+# Doesn't run properly in Wing IDE 101 5.0
+# Use IDLE 3.5.2
 
 from random import randint
 
@@ -30,6 +36,7 @@ priceList_2 = [4, 4, 35, 69, 9, 9]
 newItems = []
 newPrices = []
 
+# Function asks and directs person to the next function that they require. 
 def main():
     print("Menu Options: 'Food', 'Drinks', 'Own Items'")
     question = input("What would you like to order? : ")
@@ -151,10 +158,9 @@ def food(totalPrice, quantity, chosen, task):
                 question = "z"
                 end(totalPrice, quantity, chosen, task)
                 # It sends them to the final (end) function
-                
-# Enters second item, then chooses no - deletes item from list? - FIXED
-# If the user does not want to continue entering items - FIXED
             else:
+                # Enters second item, then chooses no - deletes item from list? - FIXED
+                # If the user does not want to continue entering items - FIXED                
                 print("Please choose a valid option...  y/n ")
                 question = "x"
 
@@ -243,7 +249,8 @@ def drinks(totalPrice, quantity, chosen, task):
                 question = "z"
                 end(totalPrice, quantity, chosen, task)
                 # It sends them to the final (end) function
-# Enters second item, then chooses no - deletes item from list?
+                
+# Enters second item, then chooses no - deletes item from list? - Fixed
 # If the user does not want to continue entering items - Fixed
             else:
                 print("Please choose a valid option...  y/n ")
@@ -285,7 +292,7 @@ def end(totalPrice, quantity, chosen, task):
             alt()
         else:
             print("Welcome to the end of the beginning ")
-
+    
     elif task == 2:
         # Prints the drink data
         print("The total price of your chosen item(s) is ${0} ".format(totalPrice))
@@ -322,8 +329,7 @@ def alt():
     print(".")
     print(".")
     print("Thanks for ordering with 'Sean's Program' ")
+    
 main()
 
-# Need to show quantities separately and be able to link to correct item 5/7/16
-# http://stackoverflow.com/questions/6119790/naming-lists-using-user-input
-# Link possibly might help. 
+# Use database
