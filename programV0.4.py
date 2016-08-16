@@ -1,5 +1,5 @@
 # Menu V0.4
-# 14/08/16
+# 16/08/16
 # Sean Nichols
 # Doesn't run properly in Wing IDE 101 5.0
 # USE IDLE 3.5.2
@@ -73,18 +73,31 @@ def food(totalPrice, quantity, chosen, task):
             chosen = [itemList[0]] + chosen
             while question == "y":
                 print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0} do you want? ".format(itemList[0])))
+                question_2 = input("How many {0} do you want? ".format(itemList[0]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
                 # Quantity must be between 1 and 15
-                if 1 <= question_2 <= 15:
-                    quantity.append(question_2)
-                    total = quantity[0] * priceList[0]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
-                    # If quantity is not allowed, it will ask for a new quantity
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList[0]
+                        totalPrice = totalPrice + total 
+                        print("Current order total = ${0}".format(totalPrice))
+                        question = "PASS"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item?")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+                            option = input("Would you like to end this program")
+        # Here 16-08-16
+        # Not quite finished...
+        # Make other items like fries
+                        else:
+                            question = "y"
+                    # Possibly option for chossing zero as quantity asks to choose item again or choose correct quantity?
+                    # returns to top of function?
                     
-            # Possibly option for chossing zero as quantity asks to choose item again or choose correct quantity?
-            # returns to top of function?
             
         elif question_1 == "chicken burger" or question_1 == "chicken" or question_1 == "chicken burger with fries":
             chosen = [itemList[1]] + chosen
