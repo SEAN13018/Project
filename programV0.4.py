@@ -1,5 +1,5 @@
 # Menu V0.4
-# 17/08/16
+# 18/08/16
 # Sean Nichols
 # Doesn't run properly in Wing IDE 101 5.0
 # USE IDLE 3.5.2
@@ -16,8 +16,9 @@ newPrices = []
 
 # Function asks and directs person to the next function that they require. 
 def main():
-    print("Menu Options: 'Food', 'Drinks', 'Own Items'")
-    question = input("What would you like to order? : ")
+    print("Welcome to Sean's Program: Menu V0.4 \n")
+    print("Menu Options: \nFood \nDrinks \nOwn Items")
+    question = input("What would you like to order? : \n ")
     question = question.lower()
     if question == "food":
         task = 1
@@ -52,7 +53,7 @@ def food(totalPrice, quantity, chosen, task):
     while question == "y" or question == "yes": 
         print("__________________________________________")
         print("The current items selected {0}".format(chosen))   
-        print("Total price of your items ${0}".format(totalPrice))
+        print("Total price of your items ${0}\n".format(totalPrice))
         print("The current food items available: ")
         global itemList
         global priceList
@@ -65,15 +66,15 @@ def food(totalPrice, quantity, chosen, task):
         print("__________________________________________")
         print("Please select one item at a time.")
         # Prints the items available for ordering
-        question_1 = input("What item would you like? ")
+        question_1 = input("What item would you like? \n ")
         question_1 = question_1.lower()
         
         # Adds the item and quantities to lists. 
         if question_1 == "fries" or question_1 == "chips":
             chosen = [itemList[0]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = input("How many {0} do you want? ".format(itemList[0]))
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList[0]))
                 if question_2.isdigit():
                     question_2 = int(question_2)
                 # Quantity must be between 1 and 15
@@ -81,16 +82,16 @@ def food(totalPrice, quantity, chosen, task):
                         quantity.append(question_2)
                         total = quantity[0] * priceList[0]
                         totalPrice = totalPrice + total 
-                        print("Current order total = ${0}".format(totalPrice))
+                        print("\nCurrent order total = ${0}".format(totalPrice))
                         question = "x"
                         # If a quantity is not allowed, it will ask for a new quantity
                         
                     elif question_2 == 0:
-                        option = input("Would you like to stop entering this item?")
+                        option = input("Would you like to stop entering this item? y/n \n ")
                         option = option.lower()
                         if option == "yes" or option == "y":
             # Need to remove item that isnt wanted... EZ in database. JK Chosen is list...?
-                            option = input("Would you like to end this program")
+                            option = input("Would you like to end this program? y/n \n ")
                             option = option.lower()
                             if option == "yes" or option == "y":
                                 question = "A"
@@ -168,7 +169,7 @@ def food(totalPrice, quantity, chosen, task):
                     question = "x"
             
         else:
-            print("Please enter a valid item.")
+            print("\nPlease enter a valid item.")
             food(totalPrice, quantity, chosen, task)
             # Only allows items that are on the list. 
 
@@ -291,7 +292,7 @@ def drinks(totalPrice, quantity, chosen, task):
         question = "x"
         while question == "x":
             # Make it so it returns them back to the while when entering the wrong thing.
-            question = input("Do you want to order more food? yes / no: ")
+            question = input("Do you want to order more food? yes / no: \n ")
             question = question.lower()
             if question == "y" or question == "yes":
                 question = "z"
@@ -313,17 +314,18 @@ def misc(totalPrice, quantity, chosen, task):
     global newPrices
     question = "y"
     while question == "yes" or question == "y":
-        item = input("What is the name of the new item? ")
+        item = input("What is the name of the new item? \n ")
+        item = item.capitalize()
 # Need to do something to allow it to be added to the start of the list. 
         newItems = [item] + newItems
-        price = int(input("What is the price of the item? $"))
+        price = int(input("What is the price of the item? \n $"))
         newPrices = [price] + newPrices
-        number = int(input("How many would you like? "))
-        quantity = [number] + quantity 
-        print("{0} {1}(s) have been added for ${2} has been added. ".format(quantity[0], newItems[0], newPrices[0]))
+        number = int(input("How many would you like? \n"))
+        quantity = [number] + quantity
         total = quantity[0] * newPrices[0]
+        print("{0} {1}(s) has been added for ${2}".format(quantity[0], newItems[0], total))
         totalPrice = totalPrice + total
-        question = input("Would you like to add another item? ")
+        question = input("Would you like to add another item? \n")
     chosen = newItems
     end(totalPrice, quantity, chosen, task)
     # Allows the user to add items with prices
@@ -373,12 +375,9 @@ def end(totalPrice, quantity, chosen, task):
             print("Welcome to the end of the beginning ")
 
 def alt():
-    # Free order if the order number is equal too the number 2000
+    # Free order if the order number is equal to the number 2000
     print("Congratulations this order is free!! ")
-    print("The new total price is $0 ")
-    print(".")
-    print(".")
-    print(".")
+    print("The new total price is $0 \n ")
     print("Thanks for ordering with 'Sean's Program' ")
     
 main()
