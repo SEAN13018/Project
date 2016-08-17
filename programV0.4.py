@@ -1,5 +1,5 @@
 # Menu V0.4
-# 16/08/16
+# 17/08/16
 # Sean Nichols
 # Doesn't run properly in Wing IDE 101 5.0
 # USE IDLE 3.5.2
@@ -56,11 +56,11 @@ def food(totalPrice, quantity, chosen, task):
         print("The current food items available: ")
         global itemList
         global priceList
-        print("{0} ${1},".format(itemList[0], priceList[0]))
-        print("{0} ${1},".format(itemList[1], priceList[1]))
-        print("{0} ${1},".format(itemList[2], priceList[2]))
-        print("{0} ${1},".format(itemList[3], priceList[3]))
-        print("{0} ${1},".format(itemList[4], priceList[4]))
+        print("{0} ${1}".format(itemList[0], priceList[0]))
+        print("{0} ${1}".format(itemList[1], priceList[1]))
+        print("{0} ${1}".format(itemList[2], priceList[2]))
+        print("{0} ${1}".format(itemList[3], priceList[3]))
+        print("{0} ${1}".format(itemList[4], priceList[4]))
         print("{0} ${1}".format(itemList[5], priceList[5]))
         print("__________________________________________")
         print("Please select one item at a time.")
@@ -82,16 +82,23 @@ def food(totalPrice, quantity, chosen, task):
                         total = quantity[0] * priceList[0]
                         totalPrice = totalPrice + total 
                         print("Current order total = ${0}".format(totalPrice))
-                        question = "PASS"
+                        question = "x"
                         # If a quantity is not allowed, it will ask for a new quantity
                         
                     elif question_2 == 0:
                         option = input("Would you like to stop entering this item?")
                         option = option.lower()
                         if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. JK Chosen is list...?
                             option = input("Would you like to end this program")
-        # Here 16-08-16
-        # Not quite finished...
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                food(totalPrice, quantity, chosen, task)
+        # Here 17-08-16 - Not quite working.     Shell - Problem in H
+        # Not quite finished...  - Maybe fix other items to look like Fries. 
         # Make other items like fries
                         else:
                             question = "y"
@@ -109,7 +116,7 @@ def food(totalPrice, quantity, chosen, task):
                     total = quantity[0] * priceList[1]
                     totalPrice = totalPrice + total 
                     print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                    question = "x"
 
         elif question_1 == "pork burger" or question_1 == "pork" or question_1 == "pork burger with fries":
             chosen = [itemList[2]] + chosen
@@ -122,7 +129,7 @@ def food(totalPrice, quantity, chosen, task):
                     total = quantity[0] * priceList[2]
                     totalPrice = totalPrice + total 
                     print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                    question = "x"
             
         elif question_1 == "vegetable burger" or question_1 == "vegetable" or question_1 == "vegetables":
             chosen = [itemList[3]] + chosen
@@ -134,7 +141,7 @@ def food(totalPrice, quantity, chosen, task):
                     total = quantity[0] * priceList[3]
                     totalPrice = totalPrice + total 
                     print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                    question = "x"
             
         elif question_1 == "seafood chowder" or question_1 == "seafood" or question_1 == "chowder":
             chosen = [itemList[4]] + chosen
@@ -146,7 +153,7 @@ def food(totalPrice, quantity, chosen, task):
                     total = quantity[0] * priceList[4]
                     totalPrice = totalPrice + total 
                     print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                    question = "x"
             
         elif question_1 == "fish and chips" or question_1 == "fish":
             chosen = [itemList[5]] + chosen
@@ -158,14 +165,13 @@ def food(totalPrice, quantity, chosen, task):
                     total = quantity[0] * priceList[5]
                     totalPrice = totalPrice + total 
                     print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                    question = "x"
             
         else:
             print("Please enter a valid item.")
             food(totalPrice, quantity, chosen, task)
             # Only allows items that are on the list. 
 
-        question = "x"
         while question == "x":
             # Make it so it returns them back to the while when entering the wrong thing.
             question = input("Do you want to order more food? yes / no: ")
@@ -320,8 +326,8 @@ def misc(totalPrice, quantity, chosen, task):
         question = input("Would you like to add another item? ")
     chosen = newItems
     end(totalPrice, quantity, chosen, task)
-    # Allow user to add items with prices
-    # Allow user to choose the items
+    # Allows the user to add items with prices
+    # Allows the user to choose the items
     
 def end(totalPrice, quantity, chosen, task):
     if task == 1:
