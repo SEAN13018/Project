@@ -1,5 +1,5 @@
 # Menu V0.4
-# 18/08/16
+# 19/08/16
 # Sean Nichols
 # Doesn't run properly in Wing IDE 101 5.0
 # USE IDLE 3.5.2
@@ -49,14 +49,14 @@ def setup(task):
      # Sends correct parameters to functions   
      
 def food(totalPrice, quantity, chosen, task):
+    global itemList
+    global priceList
     question = "y"
     while question == "y" or question == "yes": 
         print("__________________________________________")
         print("The current items selected {0}".format(chosen))   
         print("Total price of your items ${0}\n".format(totalPrice))
         print("The current food items available: ")
-        global itemList
-        global priceList
         print("{0} ${1}".format(itemList[0], priceList[0]))
         print("{0} ${1}".format(itemList[1], priceList[1]))
         print("{0} ${1}".format(itemList[2], priceList[2]))
@@ -192,14 +192,14 @@ def food(totalPrice, quantity, chosen, task):
                 question = "x"
 
 def drinks(totalPrice, quantity, chosen, task):
+    global itemList_2
+    global priceList_2
     question = "y"
     while question == "y" or question == "yes": 
         print("__________________________________________")
         print("The current drinks selected {0}".format(chosen))   
         print("Total price of your drinks ${0}".format(totalPrice))
         print("The current drinks available: ")
-        global itemList_2
-        global priceList_2
         print("{0} ${1},".format(itemList_2[0], priceList_2[0]))
         print("{0} ${1},".format(itemList_2[1], priceList_2[1]))
         print("{0} ${1},".format(itemList_2[2], priceList_2[2]))
@@ -340,11 +340,12 @@ def end(totalPrice, quantity, chosen, task):
         chosen_B = chosen[::-1]
         print("The item(s) you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
+        print("If your order number is #2000, your order is free. ")
         print("Order number: #{0} ".format(random))
         if random == 2000:
             alt()
         else:
-            print("Welcome to the end of the beginning ")
+            print("Bad luck, try again next time. ")
     
     elif task == 2:
         # Prints the drink data
@@ -354,11 +355,12 @@ def end(totalPrice, quantity, chosen, task):
         chosen_B = chosen[::-1]
         print("The drink(s) you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
+        print("If your order number is #2000, your order is free. ")
         print("Order number: #{0} ".format(random))
         if random == 2000:
             alt()
         else:
-            print("Welcome to the end of the beginning ")
+            print("Bad luck, try again next time. ")
             
     elif task == 3: 
         # Prints the miscellaneous item data
@@ -368,15 +370,17 @@ def end(totalPrice, quantity, chosen, task):
         chosen_B = chosen[::-1]
         print("The item(s) you have chosen are: {0} ".format(chosen_B))
         random = randint(1234,9999)
+        print("If your order number is #2000, your order is free. ")
         print("Order number: #{0} ".format(random))
         if random == 2000:
             alt()
         else:
-            print("Welcome to the end of the beginning ")
+            print("Bad luck, try again next time. ")
+            # Make lines here. 9:23 19/8/16
 
 def alt():
     # Free order if the order number is equal to the number 2000
-    print("Congratulations this order is free!! ")
+    print("\nCongratulations this order is free!! ")
     print("The new total price is $0 \n ")
     print("Thanks for ordering with 'Sean's Program' ")
     
