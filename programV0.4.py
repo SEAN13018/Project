@@ -1,5 +1,5 @@
 # Menu V0.4
-# 22/08/16
+# 23/08/16
 # Sean Nichols
 # Doesn't run properly in Wing IDE 101 5.0
 # USE IDLE 3.5.2
@@ -53,17 +53,17 @@ def food(totalPrice, quantity, chosen, task):
     global priceList
     question = "y"
     while question == "y" or question == "yes": 
-        print("__________________________________________")
+        print("_____________________________________________")
         print("The current items selected {0}".format(chosen))   
         print("Total price of your items ${0}\n".format(totalPrice))
-        print("The current food items available: ")
+        print("The current food items available: \n")
         print("{0} ${1}".format(itemList[0], priceList[0]))
         print("{0} ${1}".format(itemList[1], priceList[1]))
         print("{0} ${1}".format(itemList[2], priceList[2]))
         print("{0} ${1}".format(itemList[3], priceList[3]))
         print("{0} ${1}".format(itemList[4], priceList[4]))
         print("{0} ${1}".format(itemList[5], priceList[5]))
-        print("__________________________________________")
+        print("\n")
         print("Please select one item at a time.")
         # Prints the items available for ordering
         question_1 = input("What item would you like? \n ")
@@ -79,6 +79,7 @@ def food(totalPrice, quantity, chosen, task):
                     question_2 = int(question_2)
                 # Quantity must be between 1 and 15
                     if 1 <= question_2 <= 15:
+# Appending quantity list may not be working... 
                         quantity.append(question_2)
                         total = quantity[0] * priceList[0]
                         totalPrice = totalPrice + total 
@@ -104,63 +105,161 @@ def food(totalPrice, quantity, chosen, task):
         elif question_1 == "chicken burger" or question_1 == "chicken" or question_1 == "chicken burger with fries":
             chosen = [itemList[1]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0} do you want? ".format(itemList[1])))
-                if 1<= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList[1]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "x"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList[1]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList[1]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                food(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
 
         elif question_1 == "pork burger" or question_1 == "pork" or question_1 == "pork burger with fries":
             chosen = [itemList[2]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0} do you want? ".format(itemList[2])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    print(quantity)
-                    total = quantity[0] * priceList[2]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "x"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList[2]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList[2]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                food(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
+
             
         elif question_1 == "vegetable burger" or question_1 == "vegetable" or question_1 == "vegetables":
             chosen = [itemList[3]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0}(s) do you want? ".format(itemList[3])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList[3]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "x"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList[3]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList[3]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                food(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
+
             
         elif question_1 == "seafood chowder" or question_1 == "seafood" or question_1 == "chowder":
             chosen = [itemList[4]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How much {0} do you want? ".format(itemList[4])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList[4]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "x"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList[4]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList[4]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                food(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
+
             
         elif question_1 == "fish and chips" or question_1 == "fish":
             chosen = [itemList[5]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0} do you want? ".format(itemList[5])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList[5]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "x"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList[5]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList[5]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                food(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
+
             
         else:
             print("\nPlease enter a valid item.")
@@ -177,6 +276,7 @@ def food(totalPrice, quantity, chosen, task):
                 food(totalPrice, quantity, chosen, task)
             elif question == "n" or question == "no":
                 question = "z"
+                print("_____________________________________________")
                 end(totalPrice, quantity, chosen, task)
                 # It sends them to the final (end) function
             else:
@@ -207,76 +307,189 @@ def drinks(totalPrice, quantity, chosen, task):
         if question_1 == "coca-cola" or question_1 == "coke":
             chosen = [itemList_2[0]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How much {0} do you want? ".format(itemList_2[0])))
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList_2[0]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
                 # Quantity must be between 1 and 15
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList_2[0]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
-                    # If quantity is not allowed, it will ask for a new quantity
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList_2[0]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                drinks(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
                
         elif question_1 == "sprite": 
             chosen = [itemList_2[1]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How much {0} do you want? ".format(itemList_2[1])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList_2[1]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList_2[1]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList_2[1]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                drinks(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
+                
     
         elif question_1 == "champagne" or question_1 == "moet" or question_1 == "moet champagne":
             chosen = [itemList_2[2]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0} do you want? ".format(itemList_2[2])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList_2[2]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList_2[2]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList_2[2]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                drinks(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
                 
         elif question_1 == "santana dvx":
             chosen = [itemList_2[3]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0}(s) do you want? ".format(itemList_2[3])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList_2[3]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList_2[3]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList_2[3]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                drinks(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
                 
         elif question_1 == "martini":
             chosen = [itemList_2[4]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How much {0} do you want? ".format(itemList_2[4])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList_2[4]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList_2[4]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList_2[4]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                drinks(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
                 
         elif question_1 == "pina colada": 
             chosen = [itemList_2[5]] + chosen
             while question == "y":
-                print("Please enter a value between 1 & 15")
-                question_2 = int(input("How many {0} do you want? ".format(itemList_2[5])))
-                if 1 <= question_2 <= 15:
-                    quantity = [question_2] + quantity
-                    total = quantity[0] * priceList_2[5]
-                    totalPrice = totalPrice + total 
-                    print("Current order total = ${0}".format(totalPrice))
-                    question = "PASS"
+                print("\nPlease enter a value between 1 & 15")
+                question_2 = input("How many {0} do you want? \n ".format(itemList_2[5]))
+                if question_2.isdigit():
+                    question_2 = int(question_2)
+                # Quantity must be between 1 and 15
+                    if 1 <= question_2 <= 15:
+                        quantity.append(question_2)
+                        total = quantity[0] * priceList_2[5]
+                        totalPrice = totalPrice + total 
+                        print("\nCurrent order total = ${0}".format(totalPrice))
+                        question = "x"
+                        # If a quantity is not allowed, it will ask for a new quantity
+                        
+                    elif question_2 == 0:
+                        option = input("Would you like to stop entering this item? y/n \n ")
+                        option = option.lower()
+                        if option == "yes" or option == "y":
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
+                            option = input("Would you like to end this program? y/n \n ")
+                            option = option.lower()
+                            if option == "yes" or option == "y":
+                                question = "A"
+                                end(totalPrice, quantity, chosen, task)
+                            else:
+                                drinks(totalPrice, quantity, chosen, task)
+                        else:
+                            question = "y"
                 
         else:
             print("Please enter a valid item.")
