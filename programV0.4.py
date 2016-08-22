@@ -1,5 +1,5 @@
 # Menu V0.4
-# 19/08/16
+# 22/08/16
 # Sean Nichols
 # Doesn't run properly in Wing IDE 101 5.0
 # USE IDLE 3.5.2
@@ -291,7 +291,7 @@ def drinks(totalPrice, quantity, chosen, task):
 
         question = "x"
         while question == "x":
-            # Make it so it returns them back to the while when entering the wrong thing.
+            # Make it so it returns them back to the while when entering the wrong thing. - WORKING
             question = input("Do you want to order more food? yes / no: \n ")
             question = question.lower()
             if question == "y" or question == "yes":
@@ -316,18 +316,21 @@ def misc(totalPrice, quantity, chosen, task):
     while question == "yes" or question == "y":
         item = input("What is the name of the new item? \n ")
         item = item.capitalize()
-# Need to do something to allow it to be added to the start of the list. 
+# Need to do something to allow it to be added to the start of the list.
+# The answer is to use a database
         newItems = [item] + newItems
         price = int(input("What is the price of the item? \n $"))
+        # Check for integer / other?
         newPrices = [price] + newPrices
         number = int(input("How many would you like? \n"))
-        quantity = [number] + quantity
-        total = quantity[0] * newPrices[0]
-        print("{0} {1}(s) has been added for ${2}".format(quantity[0], newItems[0], total))
-        totalPrice = totalPrice + total
-        question = input("Would you like to add another item? \n")
-    chosen = newItems
-    end(totalPrice, quantity, chosen, task)
+        if 1 <= question_2 <= 15:
+            quantity = [number] + quantity
+            total = quantity[0] * newPrices[0]
+            print("{0} {1}(s) has been added for ${2}".format(quantity[0], newItems[0], total))
+            totalPrice = totalPrice + total
+            question = input("Would you like to add another item? \n")
+            chosen = newItems
+            end(totalPrice, quantity, chosen, task)
     # Allows the user to add items with prices
     # Allows the user to choose the items
     
@@ -346,6 +349,7 @@ def end(totalPrice, quantity, chosen, task):
             alt()
         else:
             print("Bad luck, try again next time. ")
+            print("Thanks for ordering with 'Sean's Program' ")
     
     elif task == 2:
         # Prints the drink data
@@ -361,6 +365,7 @@ def end(totalPrice, quantity, chosen, task):
             alt()
         else:
             print("Bad luck, try again next time. ")
+            print("Thanks for ordering with 'Sean's Program' ")
             
     elif task == 3: 
         # Prints the miscellaneous item data
@@ -376,7 +381,7 @@ def end(totalPrice, quantity, chosen, task):
             alt()
         else:
             print("Bad luck, try again next time. ")
-            # Make lines here. 9:23 19/8/16
+            print("Thanks for ordering with 'Sean's Program' ")
 
 def alt():
     # Free order if the order number is equal to the number 2000
