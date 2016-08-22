@@ -90,7 +90,7 @@ def food(totalPrice, quantity, chosen, task):
                         option = input("Would you like to stop entering this item? y/n \n ")
                         option = option.lower()
                         if option == "yes" or option == "y":
-            # Need to remove item that isnt wanted... EZ in database. JK Chosen is list...?
+            # Need to remove item that isnt wanted... EZ in database. Chosen is list... Add to database?
                             option = input("Would you like to end this program? y/n \n ")
                             option = option.lower()
                             if option == "yes" or option == "y":
@@ -98,14 +98,8 @@ def food(totalPrice, quantity, chosen, task):
                                 end(totalPrice, quantity, chosen, task)
                             else:
                                 food(totalPrice, quantity, chosen, task)
-        # Here 17-08-16 - Not quite working.     Shell - Problem in H
-        # Not quite finished...  - Maybe fix other items to look like Fries. 
-        # Make other items like fries
                         else:
                             question = "y"
-                    # Possibly option for chossing zero as quantity asks to choose item again or choose correct quantity?
-                    # returns to top of function?
-                    
             
         elif question_1 == "chicken burger" or question_1 == "chicken" or question_1 == "chicken burger with fries":
             chosen = [itemList[1]] + chosen
