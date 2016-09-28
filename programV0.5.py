@@ -1,5 +1,5 @@
 # Menu V0.5
-# 20/09/16
+# 28/09/16
 # Sean Nichols
 # Runs best with IDLE 3.5.2
 
@@ -18,6 +18,7 @@ def reset():
         # Resets the data entered by the user.
 
 def lists():
+    # Creates lists containing data from the database
     with sqlite3.connect("project_Database.db") as db:
         cursor = db.cursor()
         cursor.execute("SELECT Name_lower FROM Food")
@@ -35,7 +36,7 @@ def lists():
 
 # Function asks and directs person to the next function that they require. 
 def main():
-    print("Welcome to Sean's Program: Menu V0.4 \n")
+    print("Welcome to Sean's Program: Menu V0.5 \n")
     print("Menu Options: \nFood \nDrinks \nOwn Items")
     question = input("What would you like to order? : \n ")
     question = question.lower()
@@ -89,7 +90,7 @@ def food(totalPrice, task):
             cursor = db.cursor()
             cursor.execute("SELECT Name, Price FROM Food WHERE Name_lower = '{0}'".format(question_1))
             check = cursor.fetchall()
-            # Checks if there is an item called "What the user wants"
+            # Checks if there is an item, that the user has requested, on the database
             if len(check) == 0:
                 question = "y"
                 print("This is not a valid input")
@@ -129,13 +130,13 @@ def food(totalPrice, task):
             end(totalPrice, task)
             # It sends them to the final (end) function
         else:
-            # Enters second item, then chooses no - deletes item from list? - FIXED
-            # If the user does not want to continue entering items - FIXED                
+            # Enters second item, then chooses no - deletes item from list? - FIXED (removed list causing problem)
+            # If the user does not want to continue entering items - FIXED  (removed list with problem)               
             print("Please choose a valid option...  y/n ")
             question = "x"
 
 def drinks(totalPrice, task):
-    # Input not registering 14/09/16 - Need to fix
+    # Input not registering 14/09/16 - Working
     global itemList_2
     global priceList_2
     question = "y"
@@ -157,7 +158,7 @@ def drinks(totalPrice, task):
             cursor = db.cursor()
             cursor.execute("SELECT Name, Price FROM Drink WHERE Name_lower = '{0}'".format(question_1))
             check = cursor.fetchall()
-            # Checks if there is an drink called "What the user wants"
+            # Checks if there is an drink, that the user has entered, in the database
             if len(check) == 0:
                 question = "y"
                 print("This is not a valid input")
@@ -203,7 +204,9 @@ def drinks(totalPrice, task):
             question = "x"
 
         
-def misc(totalPrice,task): 
+def misc(totalPrice,task):
+# A function that allows users to create their own items
+# That can be ordered. 
     print("_____________________________________________")  
     question = "y"
     while question == "yes" or question == "y":
@@ -217,19 +220,32 @@ def misc(totalPrice,task):
             print("{0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("Please enter one item at a time.")
         item = input("What is the name of the new item? \n ").capitalize()
-        true = "true"
-        while true == "true":
-            price = float(input("What is the price of the item? \n $"))
-            if isinstance(price, float):
-                true = "a"
-        while true == "a":
-            quantity = int(input("How many would you like? \n"))
-            if 1 <= quantity <= 15:
-                total = quantity * price
-                true = "b"
+        
+        false = "yes"
+        # Makes sure that the price is a float type (a number/decimal)
+        while false == "yes":
+            price = input("What is the price of the item? \n $")
+            try:
+                price = float(price)
+            except ValueError:
+                false = "yes"
             else:
-                print("Please enter a quantity between 1 and 15. ")
+                # The price must be greater than $0
+                if price > 0:
+                    false = "no"
+        while false == "no":
+            quantity = input("How many would you like? \n")
+            # The quantity must be an integer that is equal to or greater than 1 or equal to or less than 15
+            if quantity.isdigit():
+                quantity = int(quantity)
+                if 1 <= quantity <= 15:
+                    total = quantity * price
+                    false = "b"
+                else:
+                    print("Please enter a quantity between 1 and 15. ")
+
         new = item, price, quantity
+        # Adds the name of the item, it's price, and the quantity onto the database
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
             cursor.execute("INSERT INTO Other(Name, Price, Quantity) VALUES(?,?,?)",new)
@@ -246,7 +262,7 @@ def misc(totalPrice,task):
                 end(totalPrice, task)
             else:
                 question = "confirm"
-        # Allows the user to add items with prices
+        # Allows the user to add more items or to not add more items
     
 def end(totalPrice, task):
     if task == 1:
@@ -260,17 +276,17 @@ def end(totalPrice, task):
             print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen item(s) is ${0} \n ".format(totalPrice))
-        print("If your order number is #2000, your order is free. ")
+        # If the order number is #2000, the order is free
         order = randint(1234,9999)
         print("Order number: #{0} ".format(order))
         if order == 2000:
             alt()
-        else:
-            print("\nBad luck, try again next time. ")
-            print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
-            payment = time.time() + 601200
-            print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
-            print("\nThanks for ordering with 'Sean's Program' ")
+        print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
+        payment = time.time() + 10800
+        # Adds 3 hours to current time (When it has to be paid...)
+        print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
+        print("\n(In the next 3 hours)")
+        print("\nThanks for ordering with 'Sean's Program' ")
     
     elif task == 2:
         # Prints the drinks ordered
@@ -283,21 +299,21 @@ def end(totalPrice, task):
             print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen drink(s) is ${0} \n ".format(totalPrice))
-        print("If your order number is #2000, your order is free. ")
+        # If the order number is #2000, the order is free
         order = randint(1234,9999)
         print("Order number: #{0} ".format(order))
         if order == 2000:
             alt()
-        else:
-            print("\nBad luck, try again next time. ")
-            print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
-            payment = time.time() + 601200
-            print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
-            print("\nThanks for ordering with 'Sean's Program' ")
+        print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
+        payment = time.time() + 10800
+        # Adds 3 hours to current time (When it has to be paid...)
+        print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
+        print("\n(In the next 3 hours)")
+        print("\nThanks for ordering with 'Sean's Program' ")
             
     elif task == 3: 
         # Prints the miscellaneous item data
-        print("The item(s) you have chosen are: {0} ")
+        print("The item(s) you have chosen are: ")
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT Name, Price, Quantity FROM Other WHERE Quantity >= 1 ")
@@ -307,21 +323,21 @@ def end(totalPrice, task):
         print("\n")
         print("The total price of your chosen item(s) is ${0} \n ".format(totalPrice))
         order = randint(1234,9999)
-        print("If your order number is #2000, your order is free. ")
+        # If the order number is #2000, the order is free
         print("Order number: #{0} ".format(order))
         if order == 2000:
             alt()
-        else:
-            print("\nBad luck, try again next time. ")
-            print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
-            payment = time.time() + 601200
-            print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
-            print("\nThanks for ordering with 'Sean's Program' ")
+        print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
+        payment = time.time() + 10800
+        # Adds 3 hours to current time (When it has to be paid...)
+        print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
+        print("\n(In the next 3 hours)")
+        print("\nThanks for ordering with 'Sean's Program' ")
 
 def alt():
     # Free order if the order number is equal to the number 2000
     print("\nCongratulations this order is free!! ")
     print("The new total price is $0 \n ")
-    print("Thanks for ordering with Sean's Program ")
+    print("Thanks for ordering with 'Sean's Program' ")
     
 main()
