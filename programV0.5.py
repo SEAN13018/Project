@@ -321,13 +321,13 @@ def end(totalPrice, task):
         for row in items:
             print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
-        print("The total price of your chosen item(s) is ${0} \n ".format(totalPrice))
+        print("The total price of your chosen item(s) is ${0:.2f} \n ".format(round(totalPrice,2)))
         order = randint(1234,9999)
         # If the order number is #2000, the order is free
         print("Order number: #{0} ".format(order))
         if order == 2000:
             alt()
-        print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
+        print("Please pay the total of ${0:.2f} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(round(totalPrice,2), order))
         payment = time.time() + 10800
         # Adds 3 hours to current time (When it has to be paid...)
         print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
