@@ -1,5 +1,5 @@
 # Menu V0.5
-# 28/09/16
+# 16/10/16
 # Sean Nichols
 # Runs best with IDLE 3.5.2
 
@@ -218,20 +218,31 @@ def misc(totalPrice,task):
             items = cursor.fetchall()
         for row in items:
             print("{0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
-        print("Please enter one item at a time.")
-        item = input("What is the name of the new item? \n ").capitalize()
+        false = "no"
+        while false == "no":
+            print("Please enter one item at a time.")
+            item = input("What is the name of the new item? \n ").capitalize()
+            with sqlite3.connect("project_Database.db") as db:
+                cursor = db.cursor()
+                cursor.execute("SELECT Name FROM Other WHERE Name = '{0}'".format(item))
+                check = cursor.fetchall()
+                # Checks if there is an item, that the user has entered, in the database
+            if len(check) == 0:
+                false = "yes"
+            else:
+                print("Please do not repeat item names.\n")
+        # Check if the same is already in the program If so ask for a new name.
         
-        false = "yes"
         # Makes sure that the price is a float type (a number/decimal)
         while false == "yes":
-            price = input("What is the price of the item? \n $")
+            price = input("What is the price of the item? Please restrict prices to a maximum of $99.99 \n $")
             try:
                 price = float(price)
             except ValueError:
                 false = "yes"
             else:
-                # The price must be greater than $0
-                if price > 0:
+                # The price must be greater than $0 but less than $100
+                if 0 < price <= 99.99:
                     false = "no"
         while false == "no":
             quantity = input("How many would you like? \n")
