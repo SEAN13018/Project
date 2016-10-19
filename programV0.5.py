@@ -154,7 +154,9 @@ def food(totalPrice, task):
 
 
 # The drinks function allows the user to order drinks. 
+# There are separate functions for ordering food and drinks as by separating the two, 
 # I can add additional specialisation to the ordering process such as calling the items either "food" or "drinks".
+# Also by having 2 separate functions the layout of the code is simpler in comparison to having it in one function. 
 def drinks(totalPrice, task):
     # Input not registering 14/09/16 - Working
     global itemList_2
