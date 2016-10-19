@@ -1,5 +1,5 @@
 # Menu V0.5
-# 16/10/16
+# 19/10/16
 # Sean Nichols
 # Runs best with IDLE 3.5.2
 
@@ -9,6 +9,10 @@ import string
 import itertools
 import time 
 
+
+# The reset function removes data from the database created by other times the program has been run.
+# To avoid interference with the new user's ordering experience.
+# (Only the current user's items are present on the database)
 def reset():
     with sqlite3.connect("project_Database.db") as db:
         cursor = db.cursor()
@@ -17,8 +21,10 @@ def reset():
         cursor.execute("DELETE FROM Other")
         # Resets the data entered by the user.
 
+        
+# The lists function creates lists containing data from the database.
+# Lists that are made global, so the other functions in the program can access them. 
 def lists():
-    # Creates lists containing data from the database
     with sqlite3.connect("project_Database.db") as db:
         cursor = db.cursor()
         cursor.execute("SELECT Name_lower FROM Food")
@@ -34,9 +40,13 @@ def lists():
         global priceList_2
         priceList_2 = list(itertools.chain(*cursor.fetchall()))
 
-# Function asks and directs person to the next function that they require. 
+
+
+# This function asks and remembers what the user would like to do. Then sends them to the setup function.  
 def main():
     print("Welcome to Sean's Program: Menu V0.5 \n")
+    print("PROMOTION: There is a chance of getting your order for free...")
+    print("disclaimer: The promotional chance refers to the current user's randomised order number matching a previously selected 4 digit number created by the programmer \n \n") 
     print("Menu Options: \nFood \nDrinks \nOwn Items")
     question = input("What would you like to order? : \n ")
     question = question.lower()
@@ -54,8 +64,11 @@ def main():
         print("Sending you back to the beginning")
         print("__________________________________________")
         main()
-        # Sends the user to the correct function
-        
+        # Sends the user to the setup function
+
+
+
+# The setup function utlises the reset and lists functions and sends the user to do what they have inputted in the main function. 
 def setup(task):
     reset()
     lists()
@@ -67,7 +80,10 @@ def setup(task):
     elif task == 3:
         misc(totalPrice, task);
      # Sends correct parameters to functions   
-     
+
+
+
+# The food function allows the user to order food.    
 def food(totalPrice, task):
     global itemList
     global priceList
@@ -135,6 +151,10 @@ def food(totalPrice, task):
             print("Please choose a valid option...  y/n ")
             question = "x"
 
+
+
+# The drinks function allows the user to order drinks. 
+# I can add additional specialisation to the ordering process such as calling the items either "food" or "drinks".
 def drinks(totalPrice, task):
     # Input not registering 14/09/16 - Working
     global itemList_2
@@ -203,10 +223,10 @@ def drinks(totalPrice, task):
             print("Please choose a valid option...  y/n ")
             question = "x"
 
-        
+
+
+# The misc function allows the users to create their own items and order them. 
 def misc(totalPrice,task):
-# A function that allows users to create their own items
-# That can be ordered. 
     print("_____________________________________________")  
     question = "y"
     while question == "yes" or question == "y":
@@ -274,7 +294,12 @@ def misc(totalPrice,task):
             else:
                 question = "confirm"
         # Allows the user to add more items or to not add more items
-    
+
+
+
+
+# The end function receives passed variables from the food, drinks or misc function.
+# Then shows the user what has been ordered. 
 def end(totalPrice, task):
     if task == 1:
         # Prints the food ordered
@@ -345,10 +370,15 @@ def end(totalPrice, task):
         print("\n(In the next 3 hours)")
         print("\nThanks for ordering with 'Sean's Program' ")
 
+
+
+
+# The alt function is present to give the user a chance to get their order without required payment
 def alt():
     # Free order if the order number is equal to the number 2000
     print("\nCongratulations this order is free!! ")
-    print("The new total price is $0 \n ")
+    totalPrice = 0
+    print("The new and updated total price is $0 \n ")
     print("Thanks for ordering with 'Sean's Program' ")
     
 main()
