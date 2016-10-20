@@ -1,5 +1,5 @@
 # Menu V0.5
-# 19/10/16
+# 20/10/16
 # Sean Nichols
 # Runs best with IDLE 3.5.2
 
@@ -314,17 +314,21 @@ def end(totalPrice, task):
             print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen item(s) is ${0} \n ".format(totalPrice))
-        # If the order number is #2000, the order is free
-        order = randint(1234,9999)
-        print("Order number: #{0} ".format(order))
-        if order == 2000:
-            alt()
-        print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
-        payment = time.time() + 10800
-        # Adds 3 hours to current time (When it has to be paid...)
-        print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
-        print("\n(In the next 3 hours)")
-        print("\nThanks for ordering with 'Sean's Program' ")
+        confirm = input("Would you like to order these items? ").lower()
+        if confirm == "yes" or confirm == "y":
+            # If the order number is #2000, the order is free
+            order = randint(1234,9999)
+            print("Order number: #{0} ".format(order))
+            if order == 2000:
+                alt()
+            print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
+            payment = time.time() + 10800
+            # Adds 3 hours to current time (When it has to be paid...)
+            print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
+            print("\n(In the next 3 hours)")
+            print("\nThanks for ordering with 'Sean's Program' ")
+        else:
+            print("Fair enough, Please use 'Sean's Program' another time. ")
     
     elif task == 2:
         # Prints the drinks ordered
@@ -337,17 +341,22 @@ def end(totalPrice, task):
             print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen drink(s) is ${0} \n ".format(totalPrice))
-        # If the order number is #2000, the order is free
-        order = randint(1234,9999)
-        print("Order number: #{0} ".format(order))
-        if order == 2000:
-            alt()
-        print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
-        payment = time.time() + 10800
-        # Adds 3 hours to current time (When it has to be paid...)
-        print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
-        print("\n(In the next 3 hours)")
-        print("\nThanks for ordering with 'Sean's Program' ")
+        # Confirms if the user wants to order the items.
+        confirm = input("Would you like to order these items? ").lower()
+        if confirm == "yes" or confirm == "y":
+            # If the order number is #2000, the order is free
+            order = randint(1234,9999)
+            print("Order number: #{0} ".format(order))
+            if order == 2000:
+                alt()
+            print("Please pay the total of ${0} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(totalPrice, order))
+            payment = time.time() + 10800
+            # Adds 3 hours to current time (When it has to be paid...)
+            print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
+            print("\n(In the next 3 hours)")
+            print("\nThanks for ordering with 'Sean's Program' ")
+        else:
+            print("Fair enough, Please use 'Sean's Program' another time. ")
             
     elif task == 3: 
         # Prints the miscellaneous item data
@@ -360,18 +369,24 @@ def end(totalPrice, task):
             print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen item(s) is ${0:.2f} \n ".format(round(totalPrice,2)))
-        order = randint(1234,9999)
-        # If the order number is #2000, the order is free
-        print("Order number: #{0} ".format(order))
-        if order == 2000:
-            alt()
-        print("Please pay the total of ${0:.2f} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(round(totalPrice,2), order))
-        payment = time.time() + 10800
-        # Adds 3 hours to current time (When it has to be paid...)
-        print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
-        print("\n(In the next 3 hours)")
-        print("\nThanks for ordering with 'Sean's Program' ")
-
+        # Confirms if the user wants to order the items.
+        confirm = input("Would you like to order these items? ").lower()
+        if confirm == "yes" or confirm == "y":
+            order = randint(1234,9999)
+            # If the order number is #2000, the order is free
+            print("\nOrder number: #{0} ".format(order))
+            if order == 2000:
+                alt()
+            print("\nPlease pay the total of ${0:.2f} to the account 1234-5678-9012-34 \nwith the order number, #{1} as the reference.".format(round(totalPrice,2), order))
+            payment = time.time() + 10800
+            # Adds 3 hours to current time (When it has to be paid...)
+            print("Payment by {0} is appreciated. ".format(time.ctime(payment)))
+            print("\n(In the next 3 hours)")
+            print("\nThanks for ordering with 'Sean's Program' ")
+        else:
+            print("Fair enough, Please use 'Sean's Program' another time. ")
+    reset()
+# The reset function is called in order to remove the user's entered data from remaining in database for legal reasons. 
 
 
 
@@ -382,5 +397,6 @@ def alt():
     totalPrice = 0
     print("The new and updated total price is $0 \n ")
     print("Thanks for ordering with 'Sean's Program' ")
+    reset()
     
 main()
