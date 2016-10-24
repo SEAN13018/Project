@@ -1,7 +1,6 @@
 # Menu V0.5
-# 20/10/16
+# 24/10/16
 # Sean Nichols
-# Runs best with IDLE 3.5.2
 
 from random import randint
 import sqlite3
@@ -386,6 +385,7 @@ def end(totalPrice, task):
         else:
             print("Fair enough, Please use 'Sean's Program' another time. ")
     reset()
+    input("\nPlease press enter to close the program")
 # The reset function is called in order to remove the user's entered data from remaining in database for legal reasons. 
 
 
@@ -398,5 +398,6 @@ def alt():
     print("The new and updated total price is $0 \n ")
     print("Thanks for ordering with 'Sean's Program' ")
     reset()
+    input("\nPlease press enter to close the program")
     
 main()
