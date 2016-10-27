@@ -1,12 +1,17 @@
 # Menu V0.5
-# 24/10/16
+# 27/10/16
 # Sean Nichols
 
 from random import randint
 import sqlite3
 import string
 import itertools
-import time 
+import time
+
+# Why there functions are separated in this program where you order food. 
+# There are separate functions for ordering food and drinks as by separating the two, 
+# It improves the user's experience where I can easily describe the product to the user by calling the items either "food" or "drinks".
+# Also by having 2 separate functions the layout of the code is simpler in comparison to having it in one function. 
 
 
 # The reset function removes data from the database created by other times the program has been run.
@@ -82,7 +87,8 @@ def setup(task):
 
 
 
-# The food function allows the user to order food.    
+# The food function allows the user to order food.
+# Food is a separate function because of string formatting that personalises the order for the correct item type. e.g. it prints "The current food items available:"
 def food(totalPrice, task):
     global itemList
     global priceList
