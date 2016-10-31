@@ -1,5 +1,5 @@
 # Menu V0.5
-# 27/10/16
+# 1/11/16
 # Sean Nichols
 
 from random import randint
@@ -95,7 +95,7 @@ def food(totalPrice, task):
     question = "y"
     while question == "y" or question == "yes": 
         print("_____________________________________________")  
-        print("Total price of your items ${0}\n".format(totalPrice))
+        print("Total price of your food items ${0}\n".format(totalPrice))
         print("The current food items available: \n")
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
@@ -104,9 +104,9 @@ def food(totalPrice, task):
         for row in items:
             print("{0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
-        print("Please select one item at a time.")
+        print("Please select one food item at a time.")
         # Prints the items available for ordering
-        question_1 = input("What item would you like? \n ").lower()
+        question_1 = input("What food item would you like? \n ").lower()
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT Name, Price FROM Food WHERE Name_lower = '{0}'".format(question_1))
@@ -169,7 +169,7 @@ def drinks(totalPrice, task):
     question = "y"
     while question == "y" or question == "yes": 
         print("_____________________________________________")  
-        print("Total price of your items ${0}\n".format(totalPrice))
+        print("Total price of your drink items ${0}\n".format(totalPrice))
         print("The current drinks available: \n")
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
