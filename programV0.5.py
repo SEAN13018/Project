@@ -1,5 +1,5 @@
 # Menu V0.5
-# 1/11/16
+# 2/11/16
 # Sean Nichols
 
 from random import randint
@@ -218,7 +218,7 @@ def drinks(totalPrice, task):
         question = question.lower()            # Ignored the no after the second item is entered - FIXED
         if question == "y" or question == "yes":
             question = "z"
-            food(totalPrice, task)
+            drinks(totalPrice, task)
         elif question == "n" or question == "no":
             question = "z"
             print("_____________________________________________")
