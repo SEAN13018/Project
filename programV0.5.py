@@ -102,7 +102,7 @@ def food(totalPrice, task):
             cursor.execute("SELECT Name, Price, Quantity FROM Food")
             items = cursor.fetchall()
         for row in items:
-            print("{0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
+            print("{0:30} ${1}  Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("Please select one food item at a time.")
         # Prints the items available for ordering
@@ -176,7 +176,7 @@ def drinks(totalPrice, task):
             cursor.execute("SELECT Name, Price, Quantity FROM Drink")
             items = cursor.fetchall()
         for row in items:
-            print("{0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
+            print("{0:15} ${1} Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("Please select one drink at a time.")
         # Prints the items available for ordering
@@ -244,7 +244,8 @@ def misc(totalPrice,task):
             cursor.execute("SELECT Name, Price, Quantity FROM Other")
             items = cursor.fetchall()
         for row in items:
-            print("{0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
+            print("{0:15} ${1} Quantity:{2}".format(row[0], row[1], row[2]))
+        print("\n")
         false = "no"
         while false == "no":
             print("Please enter one item at a time.")
@@ -316,7 +317,7 @@ def end(totalPrice, task):
             cursor.execute("SELECT Name, Price, Quantity FROM Food WHERE Quantity >= 1 ")
             items = cursor.fetchall()
         for row in items:
-            print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
+            print("{0:30} ${1} Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen item(s) is ${0} \n ".format(totalPrice))
         confirm = input("Would you like to order these items? ").lower()
@@ -343,7 +344,7 @@ def end(totalPrice, task):
             cursor.execute("SELECT Name, Price, Quantity FROM Drink WHERE Quantity >= 1 ")
             items = cursor.fetchall()
         for row in items:
-            print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
+            print("{0:15} ${1} Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen drink(s) is ${0} \n ".format(totalPrice))
         # Confirms if the user wants to order the items.
@@ -371,7 +372,7 @@ def end(totalPrice, task):
             cursor.execute("SELECT Name, Price, Quantity FROM Other WHERE Quantity >= 1 ")
             items = cursor.fetchall()
         for row in items:
-            print(" {0}  ${1}, Quantity:{2}".format(row[0], row[1], row[2]))
+            print("{0:15} ${1} Quantity:{2}".format(row[0], row[1], row[2]))
         print("\n")
         print("The total price of your chosen item(s) is ${0:.2f} \n ".format(round(totalPrice,2)))
         # Confirms if the user wants to order the items.
