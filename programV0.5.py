@@ -324,7 +324,7 @@ def end(totalPrice, task):
         confirm = input("Would you like to order these items? ").lower()
         if confirm == "yes" or confirm == "y":
             # If the order number is #2000, the order is free
-            order = randint(1234,9999)
+            order = randint(999,9999)
             print("Order number: #{0} ".format(order))
             if order == 2000:
                 alt()
@@ -352,7 +352,7 @@ def end(totalPrice, task):
         confirm = input("Would you like to order these items? ").lower()
         if confirm == "yes" or confirm == "y":
             # If the order number is #2000, the order is free
-            order = randint(1234,9999)
+            order = randint(999,9999)
             print("Order number: #{0} ".format(order))
             if order == 2000:
                 alt()
@@ -379,7 +379,7 @@ def end(totalPrice, task):
         # Confirms if the user wants to order the items.
         confirm = input("Would you like to order these items? ").lower()
         if confirm == "yes" or confirm == "y":
-            order = randint(1234,9999)
+            order = randint(999,9999)
             # If the order number is #2000, the order is free
             print("\nOrder number: #{0} ".format(order))
             if order == 2000:
