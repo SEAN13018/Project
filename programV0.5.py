@@ -1,5 +1,5 @@
 # Menu V0.5
-# 2/11/16
+# 03/11/16
 # Sean Nichols
 
 from random import randint
@@ -99,17 +99,17 @@ def food(totalPrice, task):
         print("The current food items available: \n")
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT Name, Price, Quantity FROM Food")
+            cursor.execute("SELECT Name_lower, Price, Quantity FROM Food")
             items = cursor.fetchall()
         for row in items:
-            print("{0:<30} ${1:<10} Quantity:{2:<10}".format(row[0], row[1], row[2]))
+            print("{0:<30} ${1:<5} Quantity:{2:<10}".format(row[0].title(), row[1], row[2]))
         print("\n")
         print("Please select one food item at a time.")
         # Prints the items available for ordering
         question_1 = input("What food item would you like? \n ").lower()
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT Name, Price FROM Food WHERE Name_lower = '{0}'".format(question_1))
+            cursor.execute("SELECT Name_lower FROM Food WHERE Name_lower = '{0}'".format(question_1))
             check = cursor.fetchall()
             # Checks if there is an item, that the user has requested, on the database
             if len(check) == 0:
@@ -119,7 +119,7 @@ def food(totalPrice, task):
                 question = "q"
         while question == "q":
             print("\nPlease enter a value between 1 & 15")
-            question_2 = input("How many {0} do you want? \n ".format(question_1))
+            question_2 = input("How many {0} do you want? \n ".format(question_1.title()))
             if question_2.isdigit():
                 question_2 = int(question_2)
             # Quantity must be between 1 and 15
@@ -161,7 +161,8 @@ def food(totalPrice, task):
 # The drinks function allows the user to order drinks. 
 # There are separate functions for ordering food and drinks as by separating the two, 
 # It improves the user's experience where I can easily describe the product to the user by calling the items either "food" or "drinks".
-# Also by having 2 separate functions the layout of the code is simpler in comparison to having it in one function. 
+# Also by having 2 separate functions the layout of the code is simpler in comparison to having it in one function.
+
 def drinks(totalPrice, task):
     # Input not registering 14/09/16 - Working
     global itemList_2
@@ -173,17 +174,17 @@ def drinks(totalPrice, task):
         print("The current drinks available: \n")
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT Name, Price, Quantity FROM Drink")
+            cursor.execute("SELECT Name_lower, Price, Quantity FROM Drink")
             items = cursor.fetchall()
         for row in items:
-            print("{0:<18} ${1:<5} Quantity:{2:<10}".format(row[0], row[1], row[2]))
+            print("{0:<18} ${1:<5} Quantity:{2:<10}".format(row[0].title(), row[1], row[2]))
         print("\n")
         print("Please select one drink at a time.")
         # Prints the items available for ordering
         question_1 = input("What drink would you like? \n ").lower()
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT Name, Price FROM Drink WHERE Name_lower = '{0}'".format(question_1))
+            cursor.execute("SELECT Name_lower FROM Drink WHERE Name_lower = '{0}'".format(question_1))
             check = cursor.fetchall()
             # Checks if there is an drink, that the user has entered, in the database
             if len(check) == 0:
@@ -193,7 +194,7 @@ def drinks(totalPrice, task):
                 question = "q"
         while question == "q":
             print("\nPlease enter a value between 1 & 15")
-            question_2 = input("How many {0} do you want? \n ".format(question_1))
+            question_2 = input("How many {0} do you want? \n ".format(question_1.title()))
             if question_2.isdigit():
                 question_2 = int(question_2)
             # Quantity must be between 1 and 15
@@ -214,8 +215,8 @@ def drinks(totalPrice, task):
 
     while question == "x":
         # Make it so it returns them back to the while when entering the wrong thing.
-        question = input("Do you want to order more drinks? yes / no: ")
-        question = question.lower()            # Ignored the no after the second item is entered - FIXED
+        question = input("Do you want to order more drinks? yes / no: ").lower()
+        # Ignored the no after the second item is entered - FIXED
         if question == "y" or question == "yes":
             question = "z"
             drinks(totalPrice, task)
@@ -314,10 +315,10 @@ def end(totalPrice, task):
         print("The item(s) you will receive are: \n")
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT Name, Price, Quantity FROM Food WHERE Quantity >= 1 ")
+            cursor.execute("SELECT Name_lower, Price, Quantity FROM Food WHERE Quantity >= 1 ")
             items = cursor.fetchall()
         for row in items:
-            print("{0:<30} ${1:<10} Quantity:{2:<10}".format(row[0], row[1], row[2]))
+            print("{0:<30} ${1:<10} Quantity:{2:<10}".format(row[0].title(), row[1], row[2]))
         print("\n")
         print("The total price of your chosen item(s) is ${0} \n ".format(totalPrice))
         confirm = input("Would you like to order these items? ").lower()
@@ -341,10 +342,10 @@ def end(totalPrice, task):
         print("The drink(s) you will receive are: \n")
         with sqlite3.connect("project_Database.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT Name, Price, Quantity FROM Drink WHERE Quantity >= 1 ")
+            cursor.execute("SELECT Name_lower, Price, Quantity FROM Drink WHERE Quantity >= 1 ")
             items = cursor.fetchall()
         for row in items:
-            print("{0:<18} ${1:<10} Quantity:{2:<10}".format(row[0], row[1], row[2]))
+            print("{0:<18} ${1:<5} Quantity:{2:<10}".format(row[0].title(), row[1], row[2]))
         print("\n")
         print("The total price of your chosen drink(s) is ${0} \n ".format(totalPrice))
         # Confirms if the user wants to order the items.
