@@ -1,4 +1,5 @@
 # Project
+Version 0.5 is the final version with database integration
 12DTP Project. 
 This is my project for Level 2 Digital Programming. 
 This program allows the user to order items from a menu and show the pricing of the items.
