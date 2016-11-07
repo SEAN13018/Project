@@ -1,6 +1,7 @@
 # Menu V0.5
-# 03/11/16
+# 07/11/16
 # Sean Nichols
+# Python 3.5.2 works best with the imported modules
 
 from random import randint
 import sqlite3
